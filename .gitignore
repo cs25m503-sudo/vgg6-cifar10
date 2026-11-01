@@ -1,0 +1,7 @@
+.venv/
+data/
+wandb/
+__pycache__/
+*.pyc
+A1.pdf
+template_reference.ipynb
