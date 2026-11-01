@@ -7,7 +7,7 @@ momentum: 0.9
 weight_decay: 5.0e-4
 scheduler: cosine
 batch_size: 128
-epochs: 50
+epochs: 100
 augment: true
 cutout: true
 seed: 42
