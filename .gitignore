@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 A1.pdf
 template_reference.ipynb
+checkpoints/runs/

@@ -1,0 +1,14 @@
+# Default VGG6 hyperparameters. Any key can be overridden on the command line, e.g. --lr 0.01
+activation: relu
+batch_norm: true
+optimizer: sgd
+lr: 0.05
+momentum: 0.9
+weight_decay: 5.0e-4
+scheduler: cosine
+batch_size: 128
+epochs: 50
+augment: true
+cutout: true
+seed: 42
+num_workers: 8
