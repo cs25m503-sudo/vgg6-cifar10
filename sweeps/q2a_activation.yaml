@@ -1,0 +1,26 @@
+# Q2(a): effect of the activation function. All other hyperparameters are the baseline values.
+name: q2a_activation
+entity: cs25m503-iit-madras
+project: vgg6-cifar10
+program: src/train.py
+method: grid
+metric:
+  name: val_acc
+  goal: maximize
+parameters:
+  activation:
+    values: [relu, sigmoid, tanh, silu, gelu]
+  batch_norm:
+    values: [true, false]
+  epochs:
+    value: 50
+# Run as a module so that `from src...` imports work; ${args} appends e.g. --activation=gelu
+command:
+  - ${env}
+  - python
+  - -u
+  - -m
+  - src.train
+  - --config
+  - configs/baseline.yaml
+  - ${args}
