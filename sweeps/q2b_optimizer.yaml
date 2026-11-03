@@ -1,0 +1,29 @@
+# Q2(b): effect of the optimizer, each tried at several learning rates. Activation fixed to the Q2(a) winner.
+name: q2b_optimizer
+entity: cs25m503-iit-madras
+project: vgg6-cifar10
+program: src/train.py
+method: grid
+metric:
+  name: val_acc
+  goal: maximize
+parameters:
+  optimizer:
+    values: [sgd, nesterov, adam, adagrad, rmsprop, nadam]
+  lr:
+    values: [0.1, 0.01, 0.001, 0.0001]
+  activation:
+    value: relu
+  batch_norm:
+    value: true
+  epochs:
+    value: 50
+command:
+  - ${env}
+  - python
+  - -u
+  - -m
+  - src.train
+  - --config
+  - configs/baseline.yaml
+  - ${args}
