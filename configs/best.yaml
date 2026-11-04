@@ -1,0 +1,15 @@
+# Best VGG6 configuration (Q4): highest validation accuracy across all sweeps (W&B run p78f6vr6).
+# Reproduce with: python -m src.train --config configs/best.yaml
+activation: relu
+batch_norm: true
+optimizer: nesterov
+lr: 0.1
+momentum: 0.9
+weight_decay: 5.0e-4
+scheduler: cosine
+batch_size: 128
+epochs: 150
+augment: true
+cutout: true
+seed: 42
+num_workers: 8

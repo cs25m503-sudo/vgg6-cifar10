@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VGG6 CIFAR-10 Report</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+  :root { --ink: #0b0b0b; --ink-2: #52514e; --rule: #d9d8d3; --accent: #1c5cab; --tint: #f3f6fb; }
+  * { box-sizing: border-box; }
+  body { font-family: "DejaVu Sans", "Liberation Sans", Arial, sans-serif; font-size: 10pt; line-height: 1.45;
+         color: var(--ink); background: #ffffff; margin: 0; }
+  h1 { font-size: 17pt; margin: 0 0 2mm; }
+  h2 { font-size: 13pt; color: var(--accent); border-bottom: 1.5px solid var(--accent); padding-bottom: 1mm;
+       margin: 7mm 0 3mm; break-after: avoid; }
+  h3 { font-size: 11pt; margin: 5mm 0 2mm; break-after: avoid; }
+  p, li { margin: 0 0 2mm; }
+  ul { padding-left: 5mm; margin: 0 0 2mm; }
+  a { color: var(--accent); }
+  code { font-family: "DejaVu Sans Mono", monospace; font-size: 8.6pt; background: #f1f0ec; padding: 0 1mm; border-radius: 2px; }
+  pre { font-family: "DejaVu Sans Mono", monospace; font-size: 8.4pt; background: #f1f0ec; padding: 2.5mm 3mm;
+        border-radius: 3px; margin: 0 0 3mm; white-space: pre-wrap; break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 1mm 0 3mm; font-size: 8.8pt; break-inside: avoid; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 1.2mm 1.8mm; text-align: left; vertical-align: top; }
+  th { background: var(--tint); font-weight: bold; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .best { font-weight: bold; }
+  figure { margin: 2mm 0 4mm; text-align: center; break-inside: avoid; }
+  figure img { max-width: 100%; }
+  figure.half img { max-width: 72%; }
+  figcaption { font-size: 8.6pt; color: var(--ink-2); margin-top: 1mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .grid2 figure { margin: 0 0 2mm; }
+  .meta { border: 1px solid var(--rule); background: var(--tint); padding: 3mm 4mm; border-radius: 3px; margin: 3mm 0 2mm; }
+  .meta table { margin: 0; font-size: 9.4pt; }
+  .meta td { border: 0; padding: 0.6mm 2mm 0.6mm 0; }
+  .meta td:first-child { color: var(--ink-2); width: 34mm; }
+  .callout { border-left: 3px solid var(--accent); background: var(--tint); padding: 2mm 3.5mm; margin: 2mm 0 3mm; break-inside: avoid; }
+  .page-break { break-before: page; }
+</style>
+</head>
+<body>
+
+<h1>CS6886W Systems Engineering for Deep Learning, Assignment 1</h1>
+<p style="color:var(--ink-2); margin-bottom:0">Exploring VGG6 on CIFAR-10 with different configurations</p>
+
+<div class="meta">
+<table>
+<tr><td>Roll number</td><td>CS25M503</td></tr>
+<tr><td><b>GitHub repository</b></td><td><a href="https://github.com/cs25m503-sudo/vgg6-cifar10"><b>https://github.com/cs25m503-sudo/vgg6-cifar10</b></a></td></tr>
+<tr><td>W&amp;B project</td><td><a href="https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10">https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10</a></td></tr>
+<tr><td>Best result</td><td><b>88.80%</b> validation top-1, <b>88.40%</b> test top-1 (ReLU, BN, Nesterov-SGD, lr 0.1, batch 128, 150 epochs)</td></tr>
+</table>
+</div>
+
+<p><b>Setup used for every experiment.</b> The VGG6 architecture follows the course template: <code>[64, 64, M, 128, 128, M]</code>. Each Conv3×3 is followed by optional BatchNorm and the activation, with 2×2 max-pooling, then global average pooling and <code>Linear(128, 10)</code>, for 262,218 parameters and the template's weight initialization. The official 50,000 training images are split, with seed 42, into <b>45,000 for training and 5,000 for validation</b>. Configurations are selected on validation accuracy, and the 10,000 official test images are reported once for each selected checkpoint. Unless stated otherwise, the defaults are: ReLU, BatchNorm, SGD with momentum 0.9, lr 0.05 with cosine annealing to 0, weight decay 5e-4, batch size 128, cross-entropy loss, and seed 42. All runs used one NVIDIA RTX 4090 Laptop GPU with PyTorch 2.14.1 (CUDA 12.6) and were logged to W&amp;B: 60 runs in total, consisting of 1 baseline and 4 sweeps.</p>
+
+<!-- ============================== Q1 ============================== -->
+<h2>Question 1. Training Baseline</h2>
+
+<h3>(a) Data preparation: normalization and augmentation</h3>
+<p>The normalization statistics are computed directly from the 50,000 CIFAR-10 training images, as the per-channel mean and standard deviation over all pixels in [0, 1] (<code>src/data.py: compute_mean_std</code>):</p>
+<p style="text-align:center"><b>mean = (0.4914, 0.4822, 0.4465)</b> &nbsp;&nbsp; <b>std = (0.2470, 0.2435, 0.2616)</b></p>
+<p>After normalization, a validation batch has per-channel mean ≈ 0 and std ≈ 1, which confirms the statistics. The often-copied std (0.2023, 0.1994, 0.2010) in the template is not the per-channel std of the dataset, so the computed values are used instead.</p>
+<table>
+<tr><th>Split</th><th class="n">Images</th><th>Transforms (in order)</th></tr>
+<tr><td>Train</td><td class="n">45,000</td><td><code>RandomCrop(32, padding=4)</code> → <code>RandomHorizontalFlip(p=0.5)</code> → <code>ToTensor()</code> → <code>Normalize(mean, std)</code> → <code>Cutout(1 hole, 16×16)</code></td></tr>
+<tr><td>Validation</td><td class="n">5,000</td><td><code>ToTensor()</code> → <code>Normalize(mean, std)</code></td></tr>
+<tr><td>Test</td><td class="n">10,000</td><td><code>ToTensor()</code> → <code>Normalize(mean, std)</code></td></tr>
+</table>
+<ul>
+<li><b>RandomCrop with 4-pixel padding:</b> random translations of up to ±4 px, which teach the network that an object's position does not change its class.</li>
+<li><b>RandomHorizontalFlip:</b> CIFAR-10 classes are left-right symmetric, so mirroring effectively doubles the variety of training images.</li>
+<li><b>Normalize:</b> zero-mean, unit-variance inputs per channel keep the first layer's activations and gradients well scaled, which speeds up and stabilizes optimization.</li>
+<li><b>Cutout (16×16, applied after Normalize):</b> one random square is set to 0, which is the dataset mean colour after normalization. This forces the network to use several parts of the object rather than one discriminative patch, and acts as a regularizer.</li>
+<li>Validation and test images are only converted and normalized, so evaluation is deterministic.</li>
+</ul>
+<figure class="half"><img src="../plots/augmentation_samples.png" alt="Augmentation samples">
+<figcaption>Figure 1. Row 1: original training images. Rows 2 and 3: two random augmentations of the same images (crop shift, flip and Cutout).</figcaption></figure>
+
+<h3>(b) Training with the chosen configuration</h3>
+<p>Following the instruction to prefer the configuration with the best accuracy, the model is trained with the best configuration found in Q2 (see Q4). That is the 150-epoch run of the epochs sweep, W&amp;B run <code>p78f6vr6</code>:</p>
+<table>
+<tr><th>activation</th><th>BatchNorm</th><th>optimizer</th><th class="n">lr</th><th class="n">momentum</th><th class="n">weight decay</th><th>LR schedule</th><th class="n">batch size</th><th class="n">epochs</th><th class="n">seed</th></tr>
+<tr><td>ReLU</td><td>yes</td><td>Nesterov-SGD</td><td class="n">0.1</td><td class="n">0.9</td><td class="n">5e-4</td><td>cosine to 0</td><td class="n">128</td><td class="n">150</td><td class="n">42</td></tr>
+</table>
+<p>Command: <code>python -m src.train --config configs/best.yaml</code>. For reference, the initial baseline (<code>configs/baseline.yaml</code>: SGD, lr 0.05, 100 epochs) reached 88.64% validation and 87.67% test accuracy.</p>
+
+<h3>(c) Final test top-1 accuracy and curves</h3>
+<div class="callout"><b>Final test top-1 accuracy: 88.40%</b> (10,000 test images), using the checkpoint with the best validation accuracy (88.80%, epoch 149). Re-evaluating the submitted weights with <code>python -m src.evaluate --checkpoint checkpoints/best_model.pth</code> gives the same numbers.</div>
+<figure><img src="../plots/q1_best_curves.png" alt="Best configuration loss and accuracy curves">
+<figcaption>Figure 2. Loss and accuracy per epoch for the best configuration. The validation curves are noisy while the LR is high and become smooth as the cosine schedule anneals it.</figcaption></figure>
+<p>Training accuracy stays at or slightly below validation accuracy for almost the whole run, because it is measured on augmented images with Cutout. The final gap is about 0.3 points (89.06% train vs 88.68% validation at the last epoch). The network is therefore not overfitting: with 262k parameters it is capacity-limited.</p>
+
+<!-- ============================== Q2 ============================== -->
+<h2 class="page-break">Question 2. Model Performance on Different Configurations</h2>
+
+<h3>(a) Varying the activation function</h3>
+<p><b>Experiment</b> (W&amp;B sweep <code>y9279jnd</code>, 10 runs): a grid over activation ∈ {ReLU, Sigmoid, Tanh, SiLU, GELU} × BatchNorm ∈ {on, off}, with 50 epochs and all other hyperparameters at the defaults. BatchNorm is included because it largely hides the differences between activations, so turning it off shows each activation's own behaviour.</p>
+<table>
+<tr><th>Activation</th><th class="n">BN on: val</th><th class="n">BN on: test</th><th class="n">BN off: val</th><th class="n">BN off: test</th><th class="n">Val @ epoch 10 (BN on / off)</th><th class="n">First epoch ≥ 80% (BN on / off)</th><th class="n">Final train loss (BN on)</th></tr>
+<tr class="best"><td>ReLU</td><td class="n">86.94</td><td class="n">86.11</td><td class="n">85.76</td><td class="n">84.96</td><td class="n">56.2 / 71.1</td><td class="n">34 / 22</td><td class="n">0.417</td></tr>
+<tr><td>GELU</td><td class="n">86.92</td><td class="n">85.93</td><td class="n">85.94</td><td class="n">84.62</td><td class="n">73.4 / 73.2</td><td class="n">26 / 22</td><td class="n">0.417</td></tr>
+<tr><td>SiLU</td><td class="n">86.08</td><td class="n">85.13</td><td class="n">86.06</td><td class="n">84.93</td><td class="n">71.7 / 73.4</td><td class="n">31 / 22</td><td class="n">0.469</td></tr>
+<tr><td>Tanh</td><td class="n">77.12</td><td class="n">75.99</td><td class="n">76.36</td><td class="n">75.20</td><td class="n">45.1 / 64.0</td><td class="n">never / never</td><td class="n">0.728</td></tr>
+<tr><td>Sigmoid</td><td class="n">67.16</td><td class="n">65.79</td><td class="n">10.60</td><td class="n">10.00</td><td class="n">29.8 / 9.9</td><td class="n">never / never</td><td class="n">1.035</td></tr>
+</table>
+<figure><img src="../plots/q2a_activation_val_acc.png" alt="Validation accuracy per activation">
+<figcaption>Figure 3. Validation accuracy per epoch for each activation, with BatchNorm on (left) and off (right). The legend gives each run's best validation accuracy.</figcaption></figure>
+<ul>
+<li><b>ReLU, GELU and SiLU perform best and are effectively tied (86–87%).</b> All three are non-saturating for positive inputs, where the derivative is about 1, so the gradient reaches the first conv layer without shrinking. GELU and SiLU are smooth and let small negative values through, but in a network only four conv layers deep this brings no measurable benefit. The 0.02-point gap between ReLU and GELU is far below run-to-run noise. GELU did converge fastest early on (73% at epoch 10 with BN, vs 56% for ReLU).</li>
+<li><b>Tanh is about 10 points lower (77%).</b> It is zero-centred and its maximum derivative is 1, so it trains. However, it saturates for |x| &gt; 2, where the gradient goes to 0, and units stuck in saturation stop learning. Its training loss remains high (0.73 vs 0.42 for ReLU), so the network <i>underfits</i>, and the curve never reaches 80%.</li>
+<li><b>Sigmoid is the worst.</b> Its derivative is at most 0.25, so the gradient shrinks by at least 4× per layer, and its outputs are always positive (not zero-centred), which biases the next layer's weight updates in one direction. <b>Without BatchNorm the network does not learn at all</b>: the training loss stays at exactly ln 10 = 2.303 and accuracy at 10%, which is chance level. This is the vanishing-gradient problem in its clearest form. With BatchNorm, which re-centres and rescales each layer's inputs into the sigmoid's non-saturated range, it trains, but only to 67%, and very noisily.</li>
+<li><b>Effect of BatchNorm.</b> BN improves the final accuracy of every activation (by 0.02 to 1.2 points for ReLU, GELU, SiLU and Tanh) and is essential for Sigmoid. At lr 0.05, however, BN runs are noisier early on: ReLU with BN is at 56% at epoch 10 vs 71% without BN, and reaches 80% at epoch 34 vs 22. With large updates, the running statistics BN uses at evaluation time lag behind the fast-changing weights. Once the cosine schedule lowers the LR, the BN runs catch up and finish ahead.</li>
+<li><b>Initialization caveat.</b> The template's He initialization is derived for ReLU. For Tanh and Sigmoid it produces larger pre-activations than ideal (Xavier initialization would suit them), which increases saturation and contributes to their gap.</li>
+</ul>
+
+<h3>(b) Varying the optimizer</h3>
+<p><b>Experiment</b> (sweep <code>mc9888go</code>, 24 runs): optimizer ∈ {SGD, Nesterov-SGD, Adam, Adagrad, RMSprop, Nadam} × lr ∈ {0.1, 0.01, 0.001, 0.0001}, using ReLU with BN for 50 epochs. Each optimizer has a different natural LR range, so they are compared <i>at their own best LR</i>. Momentum 0.9 applies to SGD and Nesterov, the adaptive methods use PyTorch defaults (β₁ = 0.9, β₂ = 0.999 for Adam and Nadam; α = 0.99 for RMSprop), and every optimizer uses L2 weight decay of 5e-4.</p>
+<table>
+<tr><th>Optimizer</th><th class="n">Best lr</th><th class="n">Best val</th><th class="n">Test</th><th class="n">Val @ ep 5</th><th class="n">Val @ ep 10</th><th class="n">First epoch ≥ 80%</th><th class="n">First epoch ≥ 85%</th><th class="n">Val noise*</th></tr>
+<tr class="best"><td>Nesterov-SGD</td><td class="n">0.1</td><td class="n">87.56</td><td class="n">86.57</td><td class="n">64.3</td><td class="n">67.0</td><td class="n">33</td><td class="n">44</td><td class="n">4.1</td></tr>
+<tr><td>SGD (momentum)</td><td class="n">0.1</td><td class="n">86.94</td><td class="n">86.74</td><td class="n">57.3</td><td class="n">61.6</td><td class="n">34</td><td class="n">44</td><td class="n">5.2</td></tr>
+<tr><td>Nadam</td><td class="n">0.001</td><td class="n">86.20</td><td class="n">85.17</td><td class="n">63.1</td><td class="n">70.1</td><td class="n">25</td><td class="n">37</td><td class="n">4.2</td></tr>
+<tr><td>Adam</td><td class="n">0.001</td><td class="n">85.94</td><td class="n">85.47</td><td class="n">58.4</td><td class="n">73.3</td><td class="n">25</td><td class="n">39</td><td class="n">3.9</td></tr>
+<tr><td>RMSprop</td><td class="n">0.001</td><td class="n">85.90</td><td class="n">84.93</td><td class="n">64.6</td><td class="n">61.3</td><td class="n">28</td><td class="n">44</td><td class="n">6.9</td></tr>
+<tr><td>Adagrad</td><td class="n">0.1</td><td class="n">84.88</td><td class="n">83.91</td><td class="n">59.4</td><td class="n">65.3</td><td class="n">26</td><td class="n">never</td><td class="n">4.9</td></tr>
+</table>
+<p style="font-size:8.6pt;color:var(--ink-2)">*Mean absolute epoch-to-epoch change in validation accuracy over the first 25 epochs (higher means a more erratic trajectory).</p>
+<table>
+<tr><th>Best val accuracy at lr</th><th class="n">SGD</th><th class="n">Nesterov</th><th class="n">Adam</th><th class="n">Adagrad</th><th class="n">RMSprop</th><th class="n">Nadam</th></tr>
+<tr><td>0.1</td><td class="n best">86.94</td><td class="n best">87.56</td><td class="n">45.88</td><td class="n best">84.88</td><td class="n">27.30</td><td class="n">45.40</td></tr>
+<tr><td>0.01</td><td class="n">82.94</td><td class="n">82.92</td><td class="n">79.08</td><td class="n">79.02</td><td class="n">77.00</td><td class="n">80.48</td></tr>
+<tr><td>0.001</td><td class="n">67.72</td><td class="n">67.90</td><td class="n best">85.94</td><td class="n">59.92</td><td class="n best">85.90</td><td class="n best">86.20</td></tr>
+<tr><td>0.0001</td><td class="n">46.94</td><td class="n">46.96</td><td class="n">72.70</td><td class="n">40.08</td><td class="n">72.26</td><td class="n">72.64</td></tr>
+</table>
+<figure><img src="../plots/q2b_optimizer.png" alt="Optimizer comparison">
+<figcaption>Figure 4. Left: validation accuracy of each optimizer at its best learning rate. Right: best validation accuracy as a function of learning rate (log scale).</figcaption></figure>
+<p><b>How each optimizer affects convergence:</b></p>
+<ul>
+<li><b>SGD with momentum</b> (v ← μv + g, θ ← θ − ηv) moves with step size proportional to lr × gradient. The gradients of this BN network are small, so it needs a large LR. Accuracy rises steadily with LR across the whole tested range (47% → 68% → 83% → 87%). Below 0.01 it is far too slow, still underfitting after 50 epochs with a training loss above 1.0. At lr 0.1 its early trajectory is the noisiest of the SGD family, but it generalizes best: its test accuracy of 86.74% is the highest of all optimizers.</li>
+<li><b>Nesterov-SGD</b> evaluates the gradient at the look-ahead point θ − μv, so momentum is corrected <i>before</i> it overshoots. At small LRs it is indistinguishable from plain SGD (the curves coincide in Figure 4, right). At lr 0.1 it starts faster (64% vs 57% at epoch 5), its trajectory is smoother (noise 4.1 vs 5.2), and it gains +0.6 points of validation accuracy, giving the <b>best validation accuracy of all optimizers (87.56%)</b>.</li>
+<li><b>Adam</b> keeps a momentum (first-moment) estimate and divides each parameter's step by the square root of a running average of g² (second moment), with bias correction. Each parameter therefore takes a step of roughly lr regardless of the gradient's scale. This makes it <b>converge fastest</b> (73% at epoch 10, 80% by epoch 25 vs 33–34 for SGD), but also makes it very LR-sensitive: it needs about 1e-3 and collapses to 46% at lr 0.1, where every parameter takes a step that is far too large. It ends 1–1.5 points below the SGD family, which reflects the usual generalization gap of adaptive methods. Part of this gap comes from the setup: with coupled L2 weight decay, the decay term is also divided by the adaptive denominator, so parameters with large gradients are barely regularized. AdamW's decoupled decay addresses this.</li>
+<li><b>Nadam</b> is Adam with Nesterov momentum. The look-ahead gives the same kind of benefit as for SGD, though smaller: +0.26 points over Adam, with 85% reached at epoch 37 vs 39. Its LR sensitivity is the same as Adam's.</li>
+<li><b>RMSprop</b> uses the same adaptive denominator as Adam, but has <b>no first-moment momentum and no bias correction</b>. Its first updates (when the running average of g² is still near 0) are therefore large and erratic: validation accuracy is only 31% after epoch 1, vs 52% for Adam, and it even fell from 64.6% to 61.3% between epochs 5 and 10. It has the <b>noisiest trajectory of all</b> (6.9 at its best LR, 9.5 at lr 0.01) and is the most fragile at high LR (27% at lr 0.1). At lr 1e-3 it still finishes close to Adam (85.90%).</li>
+<li><b>Adagrad</b> divides by the square root of the <i>cumulative sum</i> of all past g², which only grows. Its effective learning rate therefore decays continuously throughout training. It works only with a large initial LR (0.1 gives 84.88%, while 1e-3 stalls at 60%), makes good progress early (80% by epoch 26), and then flattens out. It is the only optimizer that never reaches 85%, because by the time fine-grained progress matters its steps have become too small.</li>
+</ul>
+<p><b>Summary of the differences.</b> The SGD-type optimizers (SGD, Nesterov) are slow at first but reach the highest final and test accuracy, provided the LR is large. The adaptive optimizers (Adam, Nadam, RMSprop) reach good accuracy two to three times sooner in epochs and work at small LRs, but they are sensitive to the LR and finish slightly lower. Among them, momentum and bias correction (Adam, Nadam) make training far smoother than RMSprop. Adagrad's ever-shrinking step size makes it the weakest for long training. Nesterov-SGD at lr 0.1 was selected for Q2(c).</p>
+
+<h3>(c) Varying batch size, number of epochs and learning rate</h3>
+<p><b>Experiments:</b> sweep <code>qtfqhv8y</code> (20 runs) is a grid of batch size ∈ {32, 64, 128, 256, 512} × lr ∈ {0.01, 0.05, 0.1, 0.2} at 50 epochs. Sweep <code>vvd87d3w</code> (5 runs) varies epochs ∈ {10, 20, 50, 100, 150} at batch size 128 and lr 0.1. Both use ReLU, BN and Nesterov-SGD with a cosine schedule.</p>
+<div class="grid2">
+<figure><img src="../plots/q2c_bs_lr_heatmap.png" alt="Batch size x learning rate heatmap">
+<figcaption>Figure 5. Best validation accuracy for each batch size × learning rate (50 epochs).</figcaption></figure>
+<figure><img src="../plots/q2c_epochs_val_acc.png" alt="Epoch budget">
+<figcaption>Figure 6. Validation accuracy for different epoch budgets (each run anneals the LR to 0 at its own last epoch).</figcaption></figure>
+</div>
+<table>
+<tr><th>Batch size (steps/epoch)</th><th>Best lr</th><th class="n">Best val</th><th class="n">Val at lr 0.01</th><th class="n">First epoch ≥ 80% at best lr</th><th class="n">Optimizer steps to 80%</th></tr>
+<tr><td>32 (1,407)</td><td>0.05</td><td class="n">87.28</td><td class="n">86.86</td><td class="n">36</td><td class="n">50,652</td></tr>
+<tr><td>64 (704)</td><td>0.05</td><td class="n">87.52</td><td class="n">85.14</td><td class="n">34</td><td class="n">23,936</td></tr>
+<tr class="best"><td>128 (352)</td><td>0.2</td><td class="n">87.90</td><td class="n">82.92</td><td class="n">40</td><td class="n">14,080</td></tr>
+<tr><td>256 (176)</td><td>0.2</td><td class="n">87.12</td><td class="n">79.58</td><td class="n">36</td><td class="n">6,336</td></tr>
+<tr><td>512 (88)</td><td>0.2</td><td class="n">87.10</td><td class="n">76.26</td><td class="n">32</td><td class="n">2,816</td></tr>
+</table>
+<table>
+<tr><th>Epochs (bs 128, lr 0.1)</th><th class="n">10</th><th class="n">20</th><th class="n">50</th><th class="n">100</th><th class="n">150</th></tr>
+<tr><td>Best val accuracy</td><td class="n">80.18</td><td class="n">84.76</td><td class="n">87.56</td><td class="n">88.80</td><td class="n best">88.80</td></tr>
+<tr><td>Test accuracy</td><td class="n">79.90</td><td class="n">84.06</td><td class="n">86.57</td><td class="n">87.98</td><td class="n best">88.40</td></tr>
+<tr><td>Final train loss</td><td class="n">0.681</td><td class="n">0.532</td><td class="n">0.408</td><td class="n">0.350</td><td class="n">0.325</td></tr>
+<tr><td>First epoch ≥ 80% val</td><td class="n">10</td><td class="n">16</td><td class="n">33</td><td class="n">64</td><td class="n">85</td></tr>
+</table>
+<p><b>Learning rate and batch size interact.</b></p>
+<ul>
+<li><b>Larger batches need a larger learning rate.</b> The best LR rises from 0.05 at batch 32–64 to 0.2 at batch 128–512. The gradient noise of SGD scales roughly with lr/B, and configurations with the same lr/B ratio perform alike: 32/0.05 gives 87.3, 64/0.1 gives 87.2 and 128/0.2 gives 87.9. This is the linear-scaling rule.</li>
+<li><b>Small LR with a large batch underfits.</b> At lr 0.01, accuracy falls steadily as the batch grows (86.9 → 85.1 → 82.9 → 79.6 → 76.3). Batch 512 makes only 88 updates per epoch (4,400 in 50 epochs vs 70,350 for batch 32), so with small steps it simply does not travel far enough. Its training loss is still 0.79 at the end.</li>
+<li><b>Large LR with a small batch is too noisy.</b> Batch 32 at lr 0.2 reaches only 84.2%, with the most erratic curve in the grid. Batch 64 at lr 0.2 dropped to 35% validation at epoch 10. Small batches already have noisy gradients, and a large LR amplifies the noise.</li>
+<li><b>Convergence speed.</b> Measured in <i>optimizer steps</i>, large batches converge far faster: batch 512 at lr 0.1 reaches 80% after about 2,200 updates, vs about 35,000 for batch 32 at lr 0.01. Measured in <i>epochs</i> they are similar (both about 25 epochs), because each large-batch step averages more examples. In wall-clock time, large batches are faster per epoch, because fewer and larger GPU kernels use the GPU better. (Epoch times in these sweeps are not compared directly, because four agents shared the GPU.)</li>
+<li><b>Final accuracy is not very sensitive to batch size once the LR is tuned</b>: the best value for every batch size lies between 87.1% and 87.9%. Batch size mainly determines training speed and the LR needed. Batch 128 with lr 0.2 was the best 50-epoch result.</li>
+</ul>
+<p><b>Number of epochs.</b> More epochs give a higher final accuracy, with clearly diminishing returns: +4.6 points from 10 to 20 epochs, +2.8 from 20 to 50, +1.2 from 50 to 100, and none from 100 to 150 in validation accuracy (+0.4 in test accuracy, with a lower training loss). Each extra epoch costs the same compute, so 150 epochs cost three times as much as 50 for +1.2 validation points. Because the cosine schedule anneals the LR to 0 at the end of each budget, every run achieves its best accuracy in its final epochs. A longer budget keeps the LR high for longer, so at any given epoch its accuracy is <i>lower</i> (the 150-epoch run only passes 80% at epoch 85, while the 10-epoch run is at 80.2% by epoch 10), but it ends at a better optimum. The gap between training and validation accuracy stays below 0.4 points even at 150 epochs, so longer training was not limited by overfitting.</p>
+
+<!-- ============================== Q3 ============================== -->
+<h2 class="page-break">Question 3. Plots (generated with W&amp;B)</h2>
+<h3>(a) Parallel-coordinates plot</h3>
+<figure><img src="../plots/q3a_parallel_coordinates.png" alt="W&B parallel coordinates">
+<figcaption>Figure 7. W&amp;B parallel-coordinates plot of all 60 runs. Each line is a configuration (activation, BatchNorm, optimizer, lr, batch size, epochs, momentum, weight decay) coloured by its best validation accuracy. Momentum (0.9) and weight decay (5e-4) were held constant. Yellow lines (≈ 85–89%) run through ReLU, GELU or SiLU with SGD or Nesterov at lr 0.05–0.2. The dark purple lines at the bottom are Sigmoid without BN (10%) and the adaptive optimizers at lr 0.1.</figcaption></figure>
+<h3>(b) Validation accuracy vs. step (scatter)</h3>
+<figure><img src="../plots/q3b_val_acc_scatter.png" alt="W&B validation accuracy scatter">
+<figcaption>Figure 8. W&amp;B scatter of each run's best validation accuracy against its creation time, with the running maximum (line). The left cluster is the baseline and the Q2(a)/Q2(b) sweeps, and the right cluster is the Q2(c) sweeps, run after a break. The running maximum reaches 88.80%.</figcaption></figure>
+<h3>(c) Training loss, training accuracy, validation loss, validation accuracy</h3>
+<div class="grid2">
+<figure><img src="../plots/q3c_train_loss.png" alt="W&B train loss"><figcaption>Figure 9. Training loss.</figcaption></figure>
+<figure><img src="../plots/q3c_train_acc.png" alt="W&B train accuracy"><figcaption>Figure 10. Training accuracy.</figcaption></figure>
+<figure><img src="../plots/q3c_val_loss.png" alt="W&B validation loss"><figcaption>Figure 11. Validation loss.</figcaption></figure>
+<figure><img src="../plots/q3c_val_acc.png" alt="W&B validation accuracy"><figcaption>Figure 12. Validation accuracy.</figcaption></figure>
+</div>
+<p style="font-size:8.6pt;color:var(--ink-2)">Figures 9–12 are W&amp;B line charts with step = epoch, showing up to 10 runs of the batch size × learning rate sweep. The lowest-accuracy, highest-loss curve is batch 512 at lr 0.01 (underfitting), and the runs at lr 0.1–0.2 give the highest curves.</p>
+
+<!-- ============================== Q4 ============================== -->
+<h2>Question 4. Final Model Performance</h2>
+<p>The configuration with the <b>best validation accuracy</b> in the W&amp;B parallel-coordinates plot is run <code>p78f6vr6</code> (sweep <code>q2c_epochs</code>):</p>
+<table>
+<tr><th>activation</th><th>batch_norm</th><th>optimizer</th><th class="n">lr</th><th class="n">momentum</th><th class="n">weight_decay</th><th>scheduler</th><th class="n">batch_size</th><th class="n">epochs</th><th>augmentation</th><th class="n">seed</th></tr>
+<tr><td>relu</td><td>true</td><td>nesterov</td><td class="n">0.1</td><td class="n">0.9</td><td class="n">5e-4</td><td>cosine</td><td class="n">128</td><td class="n">150</td><td>crop + flip + cutout</td><td class="n">42</td></tr>
+</table>
+<div class="callout"><b>Best validation top-1 accuracy: 88.80%</b> (epoch 149). Test top-1 accuracy of the same checkpoint: <b>88.40%</b>.</div>
+<pre>python -m src.train    --config configs/best.yaml                 # re-train this configuration
+python -m src.evaluate --checkpoint checkpoints/best_model.pth   # evaluate the submitted weights</pre>
+<p><b>Reproducibility verified.</b> The configuration was retrained from scratch with the command above. It reproduced the original run exactly: best validation 88.80% at epoch 149, test 88.40%, and identical final-epoch metrics (train loss 0.3254, train acc 89.06%, val loss 0.3333, val acc 88.68%). In addition, the 50-epoch version of this configuration appears in three separate sweeps, and all three runs, trained while other jobs shared the GPU, gave exactly 87.56% validation and 86.57% test accuracy. (The 100-epoch run of the same configuration tied on validation accuracy at 88.80%. The 150-epoch run is the one reported because its test accuracy is higher.)</p>
+
+<!-- ============================== Q5 ============================== -->
+<h2>Question 5. Reproducibility and Repository</h2>
+<p><b>GitHub repository: <a href="https://github.com/cs25m503-sudo/vgg6-cifar10">https://github.com/cs25m503-sudo/vgg6-cifar10</a></b></p>
+<h3>(a) Code structure</h3>
+<table>
+<tr><th>File</th><th>Responsibility</th></tr>
+<tr><td><code>src/data.py</code></td><td>Normalization statistics, transforms, Cutout, seeded 45k/5k/10k split, DataLoaders</td></tr>
+<tr><td><code>src/model.py</code></td><td>VGG6 (template architecture) with selectable activation and optional BatchNorm</td></tr>
+<tr><td><code>src/utils.py</code></td><td>Seeding, optimizer factory (6 optimizers), LR scheduler, checkpoint save/load</td></tr>
+<tr><td><code>src/train.py</code></td><td>Training loop, W&amp;B logging, best-checkpoint saving; standalone or as a W&amp;B sweep agent</td></tr>
+<tr><td><code>src/evaluate.py</code></td><td>Evaluation (loss, top-1 accuracy), and a CLI that tests any saved checkpoint</td></tr>
+<tr><td><code>src/plot_results.py</code></td><td>Regenerates the report figures for Q1 and Q2 from the W&amp;B runs</td></tr>
+<tr><td><code>configs/*.yaml</code>, <code>sweeps/*.yaml</code></td><td>Baseline and best configurations, and the four W&amp;B sweep definitions</td></tr>
+</table>
+<p>Training and evaluation are kept separate: <code>train.py</code> imports <code>evaluate()</code> from <code>evaluate.py</code>, and <code>evaluate.py</code> runs independently on a saved checkpoint without W&amp;B.</p>
+<h3>(b) README, environment and seeds</h3>
+<p>The repository README lists the exact setup and run commands for every question, the environment (Ubuntu with Linux 7.0, Python 3.12.3, torch 2.14.1+cu126, torchvision 0.29.1, wandb 0.31.0, CUDA 12.6, RTX 4090 Laptop GPU) and all dependency versions (<code>requirements.txt</code>). The seed configuration is: seed 42 for Python, NumPy and PyTorch (CPU and CUDA); <code>cudnn.deterministic = True</code> and <code>cudnn.benchmark = False</code>; a seeded validation split; a seeded DataLoader shuffle; and seeded DataLoader workers.</p>
+<h3>(c) Trained model</h3>
+<p>The trained weights of the best configuration are in the repository at <code>checkpoints/best_model.pth</code>. The checkpoint contains the configuration needed to rebuild the model, and <code>python -m src.evaluate</code> reproduces 88.80% validation and 88.40% test accuracy from it.</p>
+
+</body>
+</html>

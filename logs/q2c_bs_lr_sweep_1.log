@@ -1,0 +1,637 @@
+wandb: Starting wandb agent 🕵️
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+2026-11-03 23:04:44,622 - wandb.wandb_agent - INFO - Running runs: []
+2026-11-03 23:04:45,153 - wandb.wandb_agent - INFO - Agent received command: run
+2026-11-03 23:04:45,153 - wandb.wandb_agent - INFO - Agent starting run with config:
+	activation: relu
+	batch_norm: True
+	batch_size: 32
+	epochs: 50
+	lr: 0.01
+	optimizer: nesterov
+2026-11-03 23:04:45,155 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python -u -m src.train --config configs/baseline.yaml --activation=relu --batch_norm=True --batch_size=32 --epochs=50 --lr=0.01 --optimizer=nesterov
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+wandb: Currently logged in as: cs25m503 (cs25m503-iit-madras) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'vgg6-cifar10' when running a sweep.
+wandb: WARNING Ignoring entity 'cs25m503-iit-madras' when running a sweep.
+wandb: setting up run yfgx6pcp
+2026-11-03 23:04:50,162 - wandb.wandb_agent - INFO - Running runs: ['yfgx6pcp']
+wandb: Tracking run with wandb version 0.31.0
+wandb: Run data is saved locally in /home/anmol-t/myspace/college/Sem3/system_design_for_deep_learning/Assignment1/wandb/run-20261103_230449-yfgx6pcp
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run polished-sweep-1
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: 🧹 View sweep at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/sweeps/qtfqhv8y
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/yfgx6pcp
+Run act_relu_opt_nesterov_lr_0.01_bs_32_ep_50_wd_0.0005_bn_True on cuda
+Epoch   1/50 | train loss 1.6015 acc 41.25% | val loss 1.3151 acc 52.82% | lr 0.01000 | 11.6s
+Epoch   2/50 | train loss 1.3365 acc 52.13% | val loss 1.3064 acc 57.68% | lr 0.00999 | 11.4s
+Epoch   3/50 | train loss 1.2165 acc 56.79% | val loss 1.3328 acc 55.66% | lr 0.00996 | 16.3s
+Epoch   4/50 | train loss 1.1166 acc 60.48% | val loss 1.3480 acc 57.82% | lr 0.00991 | 19.8s
+Epoch   5/50 | train loss 1.0508 acc 63.08% | val loss 1.1415 acc 62.06% | lr 0.00984 | 21.2s
+Epoch   6/50 | train loss 0.9975 acc 64.91% | val loss 1.1908 acc 60.76% | lr 0.00976 | 21.0s
+Epoch   7/50 | train loss 0.9570 acc 66.58% | val loss 1.2341 acc 62.36% | lr 0.00965 | 20.7s
+Epoch   8/50 | train loss 0.9173 acc 68.09% | val loss 0.9226 acc 68.82% | lr 0.00952 | 14.2s
+Epoch   9/50 | train loss 0.8938 acc 68.65% | val loss 0.8059 acc 72.78% | lr 0.00938 | 13.8s
+Epoch  10/50 | train loss 0.8634 acc 70.09% | val loss 0.8270 acc 72.04% | lr 0.00922 | 20.7s
+Epoch  11/50 | train loss 0.8418 acc 70.70% | val loss 0.7610 acc 73.90% | lr 0.00905 | 21.1s
+Epoch  12/50 | train loss 0.8230 acc 71.42% | val loss 0.7608 acc 74.62% | lr 0.00885 | 21.2s
+Epoch  13/50 | train loss 0.8048 acc 72.03% | val loss 0.8847 acc 70.62% | lr 0.00864 | 21.1s
+Epoch  14/50 | train loss 0.7888 acc 72.69% | val loss 1.0296 acc 68.22% | lr 0.00842 | 35.9s
+Epoch  15/50 | train loss 0.7753 acc 73.14% | val loss 0.9917 acc 67.86% | lr 0.00819 | 36.2s
+Epoch  16/50 | train loss 0.7642 acc 73.66% | val loss 0.7558 acc 75.24% | lr 0.00794 | 34.6s
+Epoch  17/50 | train loss 0.7487 acc 74.18% | val loss 0.7033 acc 77.08% | lr 0.00768 | 35.7s
+Epoch  18/50 | train loss 0.7360 acc 74.53% | val loss 0.6194 acc 78.76% | lr 0.00741 | 36.1s
+Epoch  19/50 | train loss 0.7195 acc 75.08% | val loss 0.7525 acc 74.46% | lr 0.00713 | 36.4s
+Epoch  20/50 | train loss 0.7189 acc 75.30% | val loss 0.6406 acc 78.80% | lr 0.00684 | 30.7s
+Epoch  21/50 | train loss 0.7041 acc 75.89% | val loss 0.7297 acc 75.14% | lr 0.00655 | 15.1s
+Epoch  22/50 | train loss 0.6970 acc 76.08% | val loss 0.6389 acc 78.60% | lr 0.00624 | 14.6s
+Epoch  23/50 | train loss 0.6851 acc 76.41% | val loss 0.6283 acc 79.42% | lr 0.00594 | 10.0s
+Epoch  24/50 | train loss 0.6741 acc 76.93% | val loss 0.6527 acc 78.00% | lr 0.00563 | 10.6s
+Epoch  25/50 | train loss 0.6691 acc 76.88% | val loss 0.5754 acc 81.18% | lr 0.00531 | 16.0s
+Epoch  26/50 | train loss 0.6495 acc 77.66% | val loss 0.6252 acc 79.74% | lr 0.00500 | 15.2s
+Epoch  27/50 | train loss 0.6465 acc 77.78% | val loss 0.7323 acc 76.58% | lr 0.00469 | 14.7s
+Epoch  28/50 | train loss 0.6299 acc 78.39% | val loss 0.5568 acc 80.92% | lr 0.00437 | 15.5s
+Epoch  29/50 | train loss 0.6289 acc 78.28% | val loss 0.5901 acc 80.12% | lr 0.00406 | 14.2s
+Epoch  30/50 | train loss 0.6158 acc 78.70% | val loss 0.6501 acc 79.62% | lr 0.00376 | 15.2s
+Epoch  31/50 | train loss 0.6018 acc 79.28% | val loss 0.6270 acc 80.18% | lr 0.00345 | 13.5s
+Epoch  32/50 | train loss 0.5919 acc 79.82% | val loss 0.5236 acc 82.30% | lr 0.00316 | 13.5s
+Epoch  33/50 | train loss 0.5880 acc 79.62% | val loss 0.5571 acc 81.66% | lr 0.00287 | 14.2s
+Epoch  34/50 | train loss 0.5684 acc 80.69% | val loss 0.5236 acc 81.92% | lr 0.00259 | 14.3s
+Epoch  35/50 | train loss 0.5687 acc 80.73% | val loss 0.4924 acc 83.38% | lr 0.00232 | 13.4s
+Epoch  36/50 | train loss 0.5509 acc 81.00% | val loss 0.4866 acc 83.78% | lr 0.00206 | 13.7s
+Epoch  37/50 | train loss 0.5420 acc 81.42% | val loss 0.4591 acc 84.72% | lr 0.00181 | 13.6s
+Epoch  38/50 | train loss 0.5351 acc 81.60% | val loss 0.4668 acc 84.14% | lr 0.00158 | 14.2s
+Epoch  39/50 | train loss 0.5243 acc 82.02% | val loss 0.4748 acc 84.46% | lr 0.00136 | 14.5s
+Epoch  40/50 | train loss 0.5140 acc 82.30% | val loss 0.4404 acc 84.92% | lr 0.00115 | 14.7s
+Epoch  41/50 | train loss 0.5042 acc 82.74% | val loss 0.4176 acc 85.80% | lr 0.00095 | 14.2s
+Epoch  42/50 | train loss 0.4944 acc 83.19% | val loss 0.4099 acc 86.28% | lr 0.00078 | 14.1s
+Epoch  43/50 | train loss 0.4909 acc 83.21% | val loss 0.4198 acc 85.96% | lr 0.00062 | 13.8s
+Epoch  44/50 | train loss 0.4810 acc 83.54% | val loss 0.4144 acc 86.34% | lr 0.00048 | 14.1s
+Epoch  45/50 | train loss 0.4749 acc 83.75% | val loss 0.4104 acc 86.02% | lr 0.00035 | 14.5s
+Epoch  46/50 | train loss 0.4627 acc 84.13% | val loss 0.4001 acc 86.22% | lr 0.00024 | 14.7s
+Epoch  47/50 | train loss 0.4622 acc 84.34% | val loss 0.3912 acc 86.74% | lr 0.00016 | 14.9s
+Epoch  48/50 | train loss 0.4596 acc 84.34% | val loss 0.3887 acc 86.86% | lr 0.00009 | 15.4s
+Epoch  49/50 | train loss 0.4545 acc 84.74% | val loss 0.3901 acc 86.72% | lr 0.00004 | 12.2s
+Epoch  50/50 | train loss 0.4569 acc 84.37% | val loss 0.3899 acc 86.84% | lr 0.00001 | 10.2s
+Best val acc 86.86% at epoch 48 | Test top-1 acc 86.45% | checkpoint checkpoints/runs/yfgx6pcp.pth
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading config.yaml
+wandb: uploading history steps 48-49, summary, console lines 50-51
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: epoch_time_s ▁▁▃▄▄▄▂▂▄▄▄████▇▂▂▁▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁
+wandb:           lr ████████▇▇▇▇▇▇▆▆▆▆▅▅▅▄▄▄▄▃▃▃▃▂▂▂▂▂▁▁▁▁▁▁
+wandb:    train_acc ▁▃▄▄▅▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇██████████
+wandb:   train_loss █▆▆▅▅▄▄▄▃▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁
+wandb:      val_acc ▁▂▂▂▃▃▄▅▅▅▅▄▄▆▆▅▆▆▆▆▇▇▆▇▇▇▇▇▇▇▇█████████
+wandb:     val_loss ████▆▇▅▄▄▄▆▅▄▃▃▃▃▃▃▂▄▂▂▃▃▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   best_epoch 48
+wandb: best_val_acc 86.86
+wandb:   checkpoint checkpoints/runs/yfg...
+wandb:        epoch 50
+wandb: epoch_time_s 10.22121
+wandb:           lr 1e-05
+wandb:     test_acc 86.45
+wandb:    test_loss 0.41105
+wandb:    train_acc 84.36889
+wandb:   train_loss 0.45688
+wandb:           +2 ...
+wandb: 
+wandb: 🚀 View run act_relu_opt_nesterov_lr_0.01_bs_32_ep_50_wd_0.0005_bn_True at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/yfgx6pcp
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261103_230449-yfgx6pcp/logs
+2026-11-03 23:20:04,153 - wandb.wandb_agent - INFO - Cleaning up finished run: yfgx6pcp
+2026-11-03 23:20:06,181 - wandb.wandb_agent - INFO - Agent received command: run
+2026-11-03 23:20:06,181 - wandb.wandb_agent - INFO - Agent starting run with config:
+	activation: relu
+	batch_norm: True
+	batch_size: 32
+	epochs: 50
+	lr: 0.2
+	optimizer: nesterov
+2026-11-03 23:20:06,183 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python -u -m src.train --config configs/baseline.yaml --activation=relu --batch_norm=True --batch_size=32 --epochs=50 --lr=0.2 --optimizer=nesterov
+2026-11-03 23:20:11,189 - wandb.wandb_agent - INFO - Running runs: ['zanenoul']
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+wandb: Currently logged in as: cs25m503 (cs25m503-iit-madras) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'vgg6-cifar10' when running a sweep.
+wandb: WARNING Ignoring entity 'cs25m503-iit-madras' when running a sweep.
+wandb: setting up run zanenoul
+wandb: Tracking run with wandb version 0.31.0
+wandb: Run data is saved locally in /home/anmol-t/myspace/college/Sem3/system_design_for_deep_learning/Assignment1/wandb/run-20261103_232014-zanenoul
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run iconic-sweep-4
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: 🧹 View sweep at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/sweeps/qtfqhv8y
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/zanenoul
+Run act_relu_opt_nesterov_lr_0.2_bs_32_ep_50_wd_0.0005_bn_True on cuda
+Epoch   1/50 | train loss 1.7192 acc 36.07% | val loss 2.6304 acc 33.32% | lr 0.20000 | 13.9s
+Epoch   2/50 | train loss 1.4439 acc 47.95% | val loss 1.5078 acc 48.82% | lr 0.19980 | 11.6s
+Epoch   3/50 | train loss 1.3843 acc 50.56% | val loss 1.9180 acc 44.98% | lr 0.19921 | 14.7s
+Epoch   4/50 | train loss 1.3339 acc 52.20% | val loss 1.7235 acc 48.34% | lr 0.19823 | 17.9s
+Epoch   5/50 | train loss 1.3028 acc 53.84% | val loss 1.2104 acc 58.14% | lr 0.19686 | 16.1s
+Epoch   6/50 | train loss 1.2791 acc 54.88% | val loss 2.6082 acc 36.28% | lr 0.19511 | 18.3s
+Epoch   7/50 | train loss 1.2675 acc 54.87% | val loss 1.6585 acc 50.32% | lr 0.19298 | 17.3s
+Epoch   8/50 | train loss 1.2617 acc 55.13% | val loss 1.4415 acc 52.16% | lr 0.19048 | 16.4s
+Epoch   9/50 | train loss 1.2541 acc 55.88% | val loss 3.7381 acc 33.02% | lr 0.18763 | 16.8s
+Epoch  10/50 | train loss 1.2426 acc 56.06% | val loss 1.5664 acc 48.72% | lr 0.18443 | 15.7s
+Epoch  11/50 | train loss 1.2412 acc 56.07% | val loss 1.1495 acc 60.34% | lr 0.18090 | 17.9s
+Epoch  12/50 | train loss 1.2318 acc 56.38% | val loss 3.2101 acc 39.26% | lr 0.17705 | 15.9s
+Epoch  13/50 | train loss 1.2221 acc 56.81% | val loss 1.2320 acc 58.22% | lr 0.17290 | 16.9s
+Epoch  14/50 | train loss 1.2110 acc 57.30% | val loss 1.3350 acc 57.40% | lr 0.16845 | 16.7s
+Epoch  15/50 | train loss 1.2029 acc 57.71% | val loss 2.4334 acc 39.40% | lr 0.16374 | 17.2s
+Epoch  16/50 | train loss 1.1949 acc 58.15% | val loss 2.1019 acc 45.26% | lr 0.15878 | 15.4s
+Epoch  17/50 | train loss 1.1842 acc 58.28% | val loss 1.4138 acc 54.42% | lr 0.15358 | 16.1s
+Epoch  18/50 | train loss 1.1747 acc 58.66% | val loss 1.9796 acc 45.22% | lr 0.14818 | 16.6s
+Epoch  19/50 | train loss 1.1597 acc 58.99% | val loss 1.2630 acc 57.48% | lr 0.14258 | 15.4s
+Epoch  20/50 | train loss 1.1587 acc 59.19% | val loss 1.1963 acc 61.16% | lr 0.13681 | 15.7s
+Epoch  21/50 | train loss 1.1419 acc 59.77% | val loss 1.1885 acc 60.88% | lr 0.13090 | 18.1s
+Epoch  22/50 | train loss 1.1328 acc 60.55% | val loss 1.2609 acc 60.40% | lr 0.12487 | 17.6s
+Epoch  23/50 | train loss 1.1213 acc 60.43% | val loss 1.4760 acc 54.96% | lr 0.11874 | 16.6s
+Epoch  24/50 | train loss 1.1057 acc 61.31% | val loss 2.9137 acc 39.56% | lr 0.11253 | 16.6s
+Epoch  25/50 | train loss 1.0977 acc 61.63% | val loss 1.3697 acc 54.94% | lr 0.10628 | 16.8s
+Epoch  26/50 | train loss 1.0809 acc 62.16% | val loss 1.7015 acc 51.22% | lr 0.10000 | 16.1s
+Epoch  27/50 | train loss 1.0637 acc 62.59% | val loss 1.3572 acc 58.08% | lr 0.09372 | 17.5s
+Epoch  28/50 | train loss 1.0461 acc 63.44% | val loss 1.1944 acc 60.56% | lr 0.08747 | 16.4s
+Epoch  29/50 | train loss 1.0358 acc 63.84% | val loss 1.0724 acc 63.78% | lr 0.08126 | 17.5s
+Epoch  30/50 | train loss 1.0222 acc 64.29% | val loss 1.1243 acc 63.54% | lr 0.07513 | 17.0s
+Epoch  31/50 | train loss 1.0053 acc 65.07% | val loss 1.3385 acc 60.40% | lr 0.06910 | 14.9s
+Epoch  32/50 | train loss 0.9800 acc 65.61% | val loss 1.0881 acc 63.32% | lr 0.06319 | 13.8s
+Epoch  33/50 | train loss 0.9675 acc 66.20% | val loss 1.0471 acc 66.04% | lr 0.05742 | 11.4s
+Epoch  34/50 | train loss 0.9461 acc 67.10% | val loss 1.5897 acc 58.58% | lr 0.05182 | 14.0s
+Epoch  35/50 | train loss 0.9307 acc 67.62% | val loss 1.0358 acc 67.12% | lr 0.04642 | 15.8s
+Epoch  36/50 | train loss 0.9067 acc 68.69% | val loss 0.8850 acc 70.54% | lr 0.04122 | 17.3s
+Epoch  37/50 | train loss 0.8900 acc 69.11% | val loss 0.9890 acc 69.22% | lr 0.03626 | 16.8s
+Epoch  38/50 | train loss 0.8664 acc 69.87% | val loss 0.8437 acc 70.68% | lr 0.03155 | 17.3s
+Epoch  39/50 | train loss 0.8464 acc 70.75% | val loss 0.8211 acc 73.14% | lr 0.02710 | 17.9s
+Epoch  40/50 | train loss 0.8215 acc 71.55% | val loss 0.8276 acc 73.52% | lr 0.02295 | 17.4s
+Epoch  41/50 | train loss 0.7956 acc 72.50% | val loss 0.9326 acc 71.46% | lr 0.01910 | 16.3s
+Epoch  42/50 | train loss 0.7681 acc 73.51% | val loss 0.7003 acc 76.54% | lr 0.01557 | 16.3s
+Epoch  43/50 | train loss 0.7387 acc 74.46% | val loss 0.6482 acc 78.44% | lr 0.01237 | 16.4s
+Epoch  44/50 | train loss 0.7139 acc 75.50% | val loss 0.8292 acc 73.44% | lr 0.00952 | 17.8s
+Epoch  45/50 | train loss 0.6780 acc 76.87% | val loss 0.6113 acc 79.76% | lr 0.00702 | 17.4s
+Epoch  46/50 | train loss 0.6521 acc 77.68% | val loss 0.5670 acc 80.80% | lr 0.00489 | 17.2s
+Epoch  47/50 | train loss 0.6209 acc 78.83% | val loss 0.5142 acc 82.64% | lr 0.00314 | 18.0s
+Epoch  48/50 | train loss 0.6003 acc 79.65% | val loss 0.4837 acc 83.48% | lr 0.00177 | 19.0s
+Epoch  49/50 | train loss 0.5736 acc 80.42% | val loss 0.4621 acc 84.10% | lr 0.00079 | 17.6s
+Epoch  50/50 | train loss 0.5662 acc 80.85% | val loss 0.4628 acc 84.22% | lr 0.00020 | 14.6s
+Best val acc 84.22% at epoch 50 | Test top-1 acc 83.94% | checkpoint checkpoints/runs/zanenoul.pth
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
+wandb: epoch_time_s ▃▁▄▇▅▆▆▆▅▇▆▆▆▅▅▅▅▇▇▆▆▅▇▆▇▄▃▁▃▅▆▇▅▅▆▇▆▇█▄
+wandb:           lr ███████▇▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▄▃▃▃▃▂▂▂▂▂▂▁▁▁▁▁▁
+wandb:    train_acc ▁▃▃▄▄▄▄▄▄▄▄▄▄▄▄▅▅▅▅▅▅▅▅▅▅▆▆▆▆▆▆▆▇▇▇▇▇███
+wandb:   train_loss █▆▆▆▅▅▅▅▅▅▅▅▅▅▅▅▄▄▄▄▄▄▄▄▄▄▃▃▃▃▃▃▃▂▂▂▂▁▁▁
+wandb:      val_acc ▁▃▃▃▄▃▁▃▅▂▄▂▃▄▃▅▅▅▄▂▃▄▅▅▅▆▄▆▆▆▆▇▆▇▇▇████
+wandb:     val_loss ▆▃▄▄▆▃█▃▂▇▃▅▅▃▄▃▃▃▃▆▄▃▃▂▂▂▂▃▂▂▂▂▂▂▂▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   best_epoch 50
+wandb: best_val_acc 84.22
+wandb:   checkpoint checkpoints/runs/zan...
+wandb:        epoch 50
+wandb: epoch_time_s 14.61599
+wandb:           lr 0.0002
+wandb:     test_acc 83.94
+wandb:    test_loss 0.47868
+wandb:    train_acc 80.84889
+wandb:   train_loss 0.56623
+wandb:           +2 ...
+wandb: 
+wandb: 🚀 View run act_relu_opt_nesterov_lr_0.2_bs_32_ep_50_wd_0.0005_bn_True at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/zanenoul
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261103_232014-zanenoul/logs
+2026-11-03 23:34:07,566 - wandb.wandb_agent - INFO - Cleaning up finished run: zanenoul
+2026-11-03 23:34:09,489 - wandb.wandb_agent - INFO - Agent received command: run
+2026-11-03 23:34:09,489 - wandb.wandb_agent - INFO - Agent starting run with config:
+	activation: relu
+	batch_norm: True
+	batch_size: 128
+	epochs: 50
+	lr: 0.01
+	optimizer: nesterov
+2026-11-03 23:34:09,491 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python -u -m src.train --config configs/baseline.yaml --activation=relu --batch_norm=True --batch_size=128 --epochs=50 --lr=0.01 --optimizer=nesterov
+2026-11-03 23:34:14,497 - wandb.wandb_agent - INFO - Running runs: ['ytsy4yji']
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+wandb: Currently logged in as: cs25m503 (cs25m503-iit-madras) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'vgg6-cifar10' when running a sweep.
+wandb: WARNING Ignoring entity 'cs25m503-iit-madras' when running a sweep.
+wandb: setting up run ytsy4yji
+wandb: Tracking run with wandb version 0.31.0
+wandb: Run data is saved locally in /home/anmol-t/myspace/college/Sem3/system_design_for_deep_learning/Assignment1/wandb/run-20261103_233417-ytsy4yji
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run lemon-sweep-9
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: 🧹 View sweep at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/sweeps/qtfqhv8y
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/ytsy4yji
+Run act_relu_opt_nesterov_lr_0.01_bs_128_ep_50_wd_0.0005_bn_True on cuda
+Epoch   1/50 | train loss 1.6658 acc 39.20% | val loss 1.5935 acc 44.72% | lr 0.01000 | 11.0s
+Epoch   2/50 | train loss 1.3888 acc 50.14% | val loss 1.3016 acc 55.56% | lr 0.00999 | 11.0s
+Epoch   3/50 | train loss 1.2851 acc 53.98% | val loss 1.3585 acc 53.44% | lr 0.00996 | 11.4s
+Epoch   4/50 | train loss 1.2071 acc 57.41% | val loss 1.1915 acc 59.20% | lr 0.00991 | 11.4s
+Epoch   5/50 | train loss 1.1472 acc 59.47% | val loss 1.2574 acc 57.44% | lr 0.00984 | 10.7s
+Epoch   6/50 | train loss 1.0941 acc 61.44% | val loss 1.0930 acc 63.06% | lr 0.00976 | 11.2s
+Epoch   7/50 | train loss 1.0526 acc 62.94% | val loss 1.0663 acc 63.70% | lr 0.00965 | 11.0s
+Epoch   8/50 | train loss 1.0201 acc 64.13% | val loss 0.9822 acc 66.46% | lr 0.00952 | 11.0s
+Epoch   9/50 | train loss 0.9871 acc 65.39% | val loss 0.8981 acc 68.70% | lr 0.00938 | 11.0s
+Epoch  10/50 | train loss 0.9577 acc 66.18% | val loss 0.9361 acc 68.22% | lr 0.00922 | 11.0s
+Epoch  11/50 | train loss 0.9306 acc 67.46% | val loss 1.0755 acc 65.94% | lr 0.00905 | 11.0s
+Epoch  12/50 | train loss 0.9088 acc 68.03% | val loss 0.8484 acc 71.26% | lr 0.00885 | 10.9s
+Epoch  13/50 | train loss 0.8884 acc 69.17% | val loss 0.9219 acc 68.68% | lr 0.00864 | 10.8s
+Epoch  14/50 | train loss 0.8625 acc 70.01% | val loss 0.9775 acc 68.74% | lr 0.00842 | 10.6s
+Epoch  15/50 | train loss 0.8497 acc 70.33% | val loss 0.9712 acc 66.64% | lr 0.00819 | 10.3s
+Epoch  16/50 | train loss 0.8282 acc 71.02% | val loss 0.8382 acc 72.02% | lr 0.00794 | 9.8s
+Epoch  17/50 | train loss 0.8090 acc 71.84% | val loss 0.9214 acc 69.92% | lr 0.00768 | 9.6s
+Epoch  18/50 | train loss 0.7988 acc 72.00% | val loss 0.9910 acc 68.32% | lr 0.00741 | 8.5s
+Epoch  19/50 | train loss 0.7768 acc 73.17% | val loss 0.8833 acc 70.08% | lr 0.00713 | 8.5s
+Epoch  20/50 | train loss 0.7714 acc 73.13% | val loss 0.8814 acc 70.74% | lr 0.00684 | 6.7s
+Epoch  21/50 | train loss 0.7567 acc 73.63% | val loss 0.7770 acc 73.74% | lr 0.00655 | 8.5s
+Epoch  22/50 | train loss 0.7461 acc 74.07% | val loss 0.9915 acc 68.42% | lr 0.00624 | 8.7s
+Epoch  23/50 | train loss 0.7361 acc 74.43% | val loss 0.6972 acc 76.74% | lr 0.00594 | 8.7s
+Epoch  24/50 | train loss 0.7240 acc 74.79% | val loss 0.6968 acc 76.64% | lr 0.00563 | 11.7s
+Epoch  25/50 | train loss 0.7145 acc 75.15% | val loss 0.6565 acc 78.10% | lr 0.00531 | 11.8s
+Epoch  26/50 | train loss 0.7070 acc 75.57% | val loss 0.6399 acc 77.96% | lr 0.00500 | 11.7s
+Epoch  27/50 | train loss 0.6965 acc 75.93% | val loss 0.6457 acc 78.28% | lr 0.00469 | 11.7s
+Epoch  28/50 | train loss 0.6851 acc 76.40% | val loss 0.7112 acc 76.40% | lr 0.00437 | 11.7s
+Epoch  29/50 | train loss 0.6765 acc 76.58% | val loss 0.6395 acc 78.36% | lr 0.00406 | 11.7s
+Epoch  30/50 | train loss 0.6734 acc 76.58% | val loss 0.6089 acc 79.14% | lr 0.00376 | 11.7s
+Epoch  31/50 | train loss 0.6534 acc 77.45% | val loss 0.6413 acc 78.02% | lr 0.00345 | 11.7s
+Epoch  32/50 | train loss 0.6446 acc 77.71% | val loss 0.5850 acc 80.98% | lr 0.00316 | 11.6s
+Epoch  33/50 | train loss 0.6400 acc 78.08% | val loss 0.5880 acc 79.76% | lr 0.00287 | 11.6s
+Epoch  34/50 | train loss 0.6330 acc 78.06% | val loss 0.5883 acc 80.14% | lr 0.00259 | 11.6s
+Epoch  35/50 | train loss 0.6232 acc 78.46% | val loss 0.5535 acc 81.54% | lr 0.00232 | 11.6s
+Epoch  36/50 | train loss 0.6218 acc 78.48% | val loss 0.5825 acc 79.98% | lr 0.00206 | 11.6s
+Epoch  37/50 | train loss 0.6076 acc 78.98% | val loss 0.5302 acc 82.10% | lr 0.00181 | 11.6s
+Epoch  38/50 | train loss 0.6040 acc 79.14% | val loss 0.5457 acc 81.30% | lr 0.00158 | 11.5s
+Epoch  39/50 | train loss 0.6009 acc 79.35% | val loss 0.5292 acc 81.90% | lr 0.00136 | 11.5s
+Epoch  40/50 | train loss 0.5930 acc 79.51% | val loss 0.5199 acc 82.40% | lr 0.00115 | 11.5s
+Epoch  41/50 | train loss 0.5889 acc 79.67% | val loss 0.5193 acc 82.28% | lr 0.00095 | 11.5s
+Epoch  42/50 | train loss 0.5816 acc 79.95% | val loss 0.5140 acc 82.58% | lr 0.00078 | 11.6s
+Epoch  43/50 | train loss 0.5825 acc 80.18% | val loss 0.5236 acc 82.16% | lr 0.00062 | 11.5s
+Epoch  44/50 | train loss 0.5765 acc 80.07% | val loss 0.5087 acc 82.72% | lr 0.00048 | 11.6s
+Epoch  45/50 | train loss 0.5701 acc 80.38% | val loss 0.5031 acc 82.78% | lr 0.00035 | 11.5s
+Epoch  46/50 | train loss 0.5681 acc 80.46% | val loss 0.4991 acc 82.92% | lr 0.00024 | 11.6s
+Epoch  47/50 | train loss 0.5692 acc 80.28% | val loss 0.5004 acc 82.88% | lr 0.00016 | 12.0s
+Epoch  48/50 | train loss 0.5614 acc 80.80% | val loss 0.5021 acc 82.84% | lr 0.00009 | 11.4s
+Epoch  49/50 | train loss 0.5596 acc 80.72% | val loss 0.4994 acc 82.86% | lr 0.00004 | 11.5s
+Epoch  50/50 | train loss 0.5585 acc 80.87% | val loss 0.5000 acc 82.76% | lr 0.00001 | 11.5s
+Best val acc 82.92% at epoch 46 | Test top-1 acc 81.91% | checkpoint checkpoints/runs/ytsy4yji.pth
+wandb: updating run metadata
+wandb: uploading history steps 47-49, summary, console lines 49-51
+wandb: uploading data
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb: epoch_time_s ▆▇▇▆▇▇▇▇▇▇▆▆▅▅▃▁▃▄▄██████▇██▇█▇▇▇█▇▇▇█▇▇
+wandb:           lr ███████▇▇▇▇▇▇▆▆▆▆▅▅▅▄▄▄▄▃▃▃▃▂▂▂▂▂▂▁▁▁▁▁▁
+wandb:    train_acc ▁▃▃▄▄▅▅▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇███████████████
+wandb:   train_loss █▆▆▅▅▄▄▄▄▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      val_acc ▁▃▄▃▄▅▅▅▆▅▅▆▆▅▆▆▅▇▇▇▇▇▇▇▇▇▇█▇███████████
+wandb:     val_loss █▆▆▅▆▅▄▄▄▅▄▄▄▃▄▃▃▄▂▂▂▂▂▂▂▂▂▂▁▂▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   best_epoch 46
+wandb: best_val_acc 82.92
+wandb:   checkpoint checkpoints/runs/yts...
+wandb:        epoch 50
+wandb: epoch_time_s 11.52931
+wandb:           lr 1e-05
+wandb:     test_acc 81.91
+wandb:    test_loss 0.52257
+wandb:    train_acc 80.87333
+wandb:   train_loss 0.55851
+wandb:           +2 ...
+wandb: 
+wandb: 🚀 View run act_relu_opt_nesterov_lr_0.01_bs_128_ep_50_wd_0.0005_bn_True at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/ytsy4yji
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261103_233417-ytsy4yji/logs
+2026-11-03 23:43:44,908 - wandb.wandb_agent - INFO - Cleaning up finished run: ytsy4yji
+2026-11-03 23:43:46,909 - wandb.wandb_agent - INFO - Agent received command: run
+2026-11-03 23:43:46,910 - wandb.wandb_agent - INFO - Agent starting run with config:
+	activation: relu
+	batch_norm: True
+	batch_size: 128
+	epochs: 50
+	lr: 0.2
+	optimizer: nesterov
+2026-11-03 23:43:46,912 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python -u -m src.train --config configs/baseline.yaml --activation=relu --batch_norm=True --batch_size=128 --epochs=50 --lr=0.2 --optimizer=nesterov
+2026-11-03 23:43:51,918 - wandb.wandb_agent - INFO - Running runs: ['mp8cncf6']
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+wandb: Currently logged in as: cs25m503 (cs25m503-iit-madras) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'vgg6-cifar10' when running a sweep.
+wandb: WARNING Ignoring entity 'cs25m503-iit-madras' when running a sweep.
+wandb: setting up run mp8cncf6
+wandb: Tracking run with wandb version 0.31.0
+wandb: Run data is saved locally in /home/anmol-t/myspace/college/Sem3/system_design_for_deep_learning/Assignment1/wandb/run-20261103_234353-mp8cncf6
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run drawn-sweep-12
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: 🧹 View sweep at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/sweeps/qtfqhv8y
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/mp8cncf6
+Run act_relu_opt_nesterov_lr_0.2_bs_128_ep_50_wd_0.0005_bn_True on cuda
+Epoch   1/50 | train loss 1.6742 acc 37.78% | val loss 1.9159 acc 41.20% | lr 0.20000 | 13.8s
+Epoch   2/50 | train loss 1.2808 acc 53.91% | val loss 1.4742 acc 52.80% | lr 0.19980 | 11.5s
+Epoch   3/50 | train loss 1.1489 acc 59.01% | val loss 1.4561 acc 53.08% | lr 0.19921 | 11.5s
+Epoch   4/50 | train loss 1.0709 acc 62.31% | val loss 1.9237 acc 49.58% | lr 0.19823 | 11.5s
+Epoch   5/50 | train loss 1.0138 acc 64.16% | val loss 1.0474 acc 65.28% | lr 0.19686 | 11.5s
+Epoch   6/50 | train loss 0.9844 acc 65.59% | val loss 1.5081 acc 55.98% | lr 0.19511 | 11.4s
+Epoch   7/50 | train loss 0.9575 acc 66.56% | val loss 1.2786 acc 60.84% | lr 0.19298 | 11.5s
+Epoch   8/50 | train loss 0.9353 acc 67.34% | val loss 1.8642 acc 51.74% | lr 0.19048 | 11.5s
+Epoch   9/50 | train loss 0.9250 acc 67.66% | val loss 1.1907 acc 65.38% | lr 0.18763 | 11.3s
+Epoch  10/50 | train loss 0.9144 acc 68.02% | val loss 1.4684 acc 57.84% | lr 0.18443 | 11.2s
+Epoch  11/50 | train loss 0.8970 acc 68.84% | val loss 1.1258 acc 65.76% | lr 0.18090 | 11.4s
+Epoch  12/50 | train loss 0.8872 acc 69.02% | val loss 2.0542 acc 48.70% | lr 0.17705 | 11.4s
+Epoch  13/50 | train loss 0.8782 acc 69.57% | val loss 1.0755 acc 64.62% | lr 0.17290 | 11.3s
+Epoch  14/50 | train loss 0.8621 acc 69.93% | val loss 2.3419 acc 49.84% | lr 0.16845 | 11.1s
+Epoch  15/50 | train loss 0.8569 acc 70.23% | val loss 1.4184 acc 57.38% | lr 0.16374 | 11.5s
+Epoch  16/50 | train loss 0.8427 acc 70.62% | val loss 0.9983 acc 68.46% | lr 0.15878 | 11.5s
+Epoch  17/50 | train loss 0.8349 acc 71.05% | val loss 1.1818 acc 63.46% | lr 0.15358 | 9.2s
+Epoch  18/50 | train loss 0.8255 acc 71.41% | val loss 1.0470 acc 65.20% | lr 0.14818 | 8.6s
+Epoch  19/50 | train loss 0.8131 acc 71.53% | val loss 1.2668 acc 62.92% | lr 0.14258 | 8.7s
+Epoch  20/50 | train loss 0.8036 acc 71.93% | val loss 0.8352 acc 72.98% | lr 0.13681 | 8.8s
+Epoch  21/50 | train loss 0.7969 acc 72.53% | val loss 0.8512 acc 70.46% | lr 0.13090 | 8.7s
+Epoch  22/50 | train loss 0.7918 acc 72.42% | val loss 0.8593 acc 72.00% | lr 0.12487 | 9.0s
+Epoch  23/50 | train loss 0.7783 acc 73.03% | val loss 0.9201 acc 71.44% | lr 0.11874 | 11.2s
+Epoch  24/50 | train loss 0.7719 acc 73.18% | val loss 0.7465 acc 75.18% | lr 0.11253 | 12.1s
+Epoch  25/50 | train loss 0.7571 acc 73.81% | val loss 1.1971 acc 64.38% | lr 0.10628 | 12.2s
+Epoch  26/50 | train loss 0.7499 acc 73.78% | val loss 0.7082 acc 76.44% | lr 0.10000 | 12.2s
+Epoch  27/50 | train loss 0.7414 acc 74.46% | val loss 1.1913 acc 65.32% | lr 0.09372 | 12.2s
+Epoch  28/50 | train loss 0.7229 acc 74.98% | val loss 1.0712 acc 67.60% | lr 0.08747 | 12.2s
+Epoch  29/50 | train loss 0.7178 acc 75.40% | val loss 0.9437 acc 69.98% | lr 0.08126 | 12.3s
+Epoch  30/50 | train loss 0.7087 acc 75.54% | val loss 0.7768 acc 74.98% | lr 0.07513 | 12.2s
+Epoch  31/50 | train loss 0.6884 acc 76.19% | val loss 0.9796 acc 71.26% | lr 0.06910 | 12.2s
+Epoch  32/50 | train loss 0.6735 acc 76.66% | val loss 1.0471 acc 68.16% | lr 0.06319 | 12.2s
+Epoch  33/50 | train loss 0.6680 acc 77.00% | val loss 0.7213 acc 77.06% | lr 0.05742 | 12.2s
+Epoch  34/50 | train loss 0.6535 acc 77.54% | val loss 0.7007 acc 77.36% | lr 0.05182 | 12.3s
+Epoch  35/50 | train loss 0.6327 acc 78.23% | val loss 0.7333 acc 76.72% | lr 0.04642 | 12.3s
+Epoch  36/50 | train loss 0.6252 acc 78.27% | val loss 0.6917 acc 78.00% | lr 0.04122 | 12.3s
+Epoch  37/50 | train loss 0.6007 acc 79.44% | val loss 0.6486 acc 79.68% | lr 0.03626 | 12.2s
+Epoch  38/50 | train loss 0.5897 acc 79.69% | val loss 0.6864 acc 79.26% | lr 0.03155 | 12.1s
+Epoch  39/50 | train loss 0.5735 acc 80.43% | val loss 0.7490 acc 77.30% | lr 0.02710 | 12.0s
+Epoch  40/50 | train loss 0.5572 acc 80.92% | val loss 0.5514 acc 81.48% | lr 0.02295 | 12.1s
+Epoch  41/50 | train loss 0.5399 acc 81.41% | val loss 0.5066 acc 83.66% | lr 0.01910 | 12.2s
+Epoch  42/50 | train loss 0.5204 acc 82.23% | val loss 0.6250 acc 79.82% | lr 0.01557 | 12.2s
+Epoch  43/50 | train loss 0.5041 acc 82.77% | val loss 0.5336 acc 82.60% | lr 0.01237 | 12.2s
+Epoch  44/50 | train loss 0.4880 acc 83.23% | val loss 0.4785 acc 84.64% | lr 0.00952 | 12.1s
+Epoch  45/50 | train loss 0.4712 acc 83.81% | val loss 0.4307 acc 85.92% | lr 0.00702 | 12.1s
+Epoch  46/50 | train loss 0.4581 acc 84.36% | val loss 0.4194 acc 85.78% | lr 0.00489 | 12.2s
+Epoch  47/50 | train loss 0.4420 acc 84.97% | val loss 0.3928 acc 86.84% | lr 0.00314 | 12.6s
+Epoch  48/50 | train loss 0.4282 acc 85.44% | val loss 0.3801 acc 87.54% | lr 0.00177 | 12.3s
+Epoch  49/50 | train loss 0.4256 acc 85.49% | val loss 0.3657 acc 87.90% | lr 0.00079 | 12.1s
+Epoch  50/50 | train loss 0.4184 acc 85.81% | val loss 0.3672 acc 87.78% | lr 0.00020 | 12.1s
+Best val acc 87.90% at epoch 49 | Test top-1 acc 86.62% | checkpoint checkpoints/runs/mp8cncf6.pth
+wandb: uploading history steps 47-48, summary, console lines 49-50; updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log
+wandb: uploading history steps 49-49, summary, console lines 51-51
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
+wandb: epoch_time_s ▆▆▆▆▆▆▆▆▆▆▆▆▂▁▁▁▂▆▇▇▇▇▇▇▇▇▇▇█▇▇▇▇▇▇▇▇██▇
+wandb:           lr ████████▇▇▇▇▇▇▆▆▆▅▅▅▄▄▄▄▃▃▃▃▂▂▂▂▂▂▁▁▁▁▁▁
+wandb:    train_acc ▁▃▄▅▅▅▅▅▅▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇██████
+wandb:   train_loss █▆▅▅▄▄▄▄▄▄▄▃▃▃▃▃▃▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁
+wandb:      val_acc ▁▃▂▅▃▃▅▄▅▂▂▃▅▄▅▆▆▆▆▄▅▅▅▆▆▆▆▆▇▇▆▇▇▇▇█████
+wandb:     val_loss ▆▅▅▇▃▄▆▄▅▄▄█▅▃▄▄▃▃▃▂▂▄▃▃▂▃▂▂▂▂▂▂▂▁▂▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   best_epoch 49
+wandb: best_val_acc 87.9
+wandb:   checkpoint checkpoints/runs/mp8...
+wandb:        epoch 50
+wandb: epoch_time_s 12.09087
+wandb:           lr 0.0002
+wandb:     test_acc 86.62
+wandb:    test_loss 0.40072
+wandb:    train_acc 85.81333
+wandb:   train_loss 0.41842
+wandb:           +2 ...
+wandb: 
+wandb: 🚀 View run act_relu_opt_nesterov_lr_0.2_bs_128_ep_50_wd_0.0005_bn_True at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/mp8cncf6
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261103_234353-mp8cncf6/logs
+2026-11-03 23:53:47,496 - wandb.wandb_agent - INFO - Cleaning up finished run: mp8cncf6
+2026-11-03 23:53:49,461 - wandb.wandb_agent - INFO - Agent received command: run
+2026-11-03 23:53:49,461 - wandb.wandb_agent - INFO - Agent starting run with config:
+	activation: relu
+	batch_norm: True
+	batch_size: 256
+	epochs: 50
+	lr: 0.1
+	optimizer: nesterov
+2026-11-03 23:53:49,463 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python -u -m src.train --config configs/baseline.yaml --activation=relu --batch_norm=True --batch_size=256 --epochs=50 --lr=0.1 --optimizer=nesterov
+2026-11-03 23:53:54,470 - wandb.wandb_agent - INFO - Running runs: ['ynd9fg74']
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+wandb: Currently logged in as: cs25m503 (cs25m503-iit-madras) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'vgg6-cifar10' when running a sweep.
+wandb: WARNING Ignoring entity 'cs25m503-iit-madras' when running a sweep.
+wandb: setting up run ynd9fg74
+wandb: Tracking run with wandb version 0.31.0
+wandb: Run data is saved locally in /home/anmol-t/myspace/college/Sem3/system_design_for_deep_learning/Assignment1/wandb/run-20261103_235356-ynd9fg74
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tough-sweep-15
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: 🧹 View sweep at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/sweeps/qtfqhv8y
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/ynd9fg74
+Run act_relu_opt_nesterov_lr_0.1_bs_256_ep_50_wd_0.0005_bn_True on cuda
+Epoch   1/50 | train loss 1.6267 acc 39.90% | val loss 1.6721 acc 43.44% | lr 0.10000 | 14.3s
+Epoch   2/50 | train loss 1.2954 acc 53.39% | val loss 1.4232 acc 52.58% | lr 0.09990 | 12.6s
+Epoch   3/50 | train loss 1.1506 acc 59.04% | val loss 1.0837 acc 62.36% | lr 0.09961 | 12.5s
+Epoch   4/50 | train loss 1.0603 acc 62.56% | val loss 1.1287 acc 63.66% | lr 0.09911 | 12.6s
+Epoch   5/50 | train loss 0.9833 acc 65.47% | val loss 2.1582 acc 48.98% | lr 0.09843 | 12.7s
+Epoch   6/50 | train loss 0.9361 acc 67.12% | val loss 1.2121 acc 60.36% | lr 0.09755 | 12.6s
+Epoch   7/50 | train loss 0.8831 acc 69.28% | val loss 1.0436 acc 65.96% | lr 0.09649 | 12.6s
+Epoch   8/50 | train loss 0.8634 acc 69.78% | val loss 0.9734 acc 70.24% | lr 0.09524 | 12.5s
+Epoch   9/50 | train loss 0.8381 acc 70.80% | val loss 0.8567 acc 71.46% | lr 0.09382 | 12.4s
+Epoch  10/50 | train loss 0.8090 acc 71.97% | val loss 0.8895 acc 71.22% | lr 0.09222 | 12.5s
+Epoch  11/50 | train loss 0.7872 acc 72.76% | val loss 0.9579 acc 70.14% | lr 0.09045 | 12.5s
+Epoch  12/50 | train loss 0.7704 acc 73.44% | val loss 0.7904 acc 74.52% | lr 0.08853 | 12.5s
+Epoch  13/50 | train loss 0.7626 acc 73.64% | val loss 0.9303 acc 69.78% | lr 0.08645 | 12.4s
+Epoch  14/50 | train loss 0.7434 acc 74.22% | val loss 1.2359 acc 67.50% | lr 0.08423 | 12.6s
+Epoch  15/50 | train loss 0.7322 acc 74.64% | val loss 1.1487 acc 64.06% | lr 0.08187 | 12.4s
+Epoch  16/50 | train loss 0.7212 acc 75.00% | val loss 0.7360 acc 75.80% | lr 0.07939 | 12.6s
+Epoch  17/50 | train loss 0.7092 acc 75.58% | val loss 0.9432 acc 70.42% | lr 0.07679 | 12.6s
+Epoch  18/50 | train loss 0.6993 acc 75.79% | val loss 0.6826 acc 76.68% | lr 0.07409 | 10.8s
+Epoch  19/50 | train loss 0.6868 acc 76.25% | val loss 0.9411 acc 70.14% | lr 0.07129 | 9.1s
+Epoch  20/50 | train loss 0.6836 acc 76.32% | val loss 0.8887 acc 71.66% | lr 0.06841 | 9.4s
+Epoch  21/50 | train loss 0.6649 acc 76.97% | val loss 0.7533 acc 74.82% | lr 0.06545 | 9.9s
+Epoch  22/50 | train loss 0.6540 acc 77.55% | val loss 0.9186 acc 72.44% | lr 0.06243 | 9.1s
+Epoch  23/50 | train loss 0.6471 acc 77.76% | val loss 0.7926 acc 75.64% | lr 0.05937 | 9.5s
+Epoch  24/50 | train loss 0.6328 acc 78.20% | val loss 0.8069 acc 74.76% | lr 0.05627 | 12.6s
+Epoch  25/50 | train loss 0.6280 acc 78.48% | val loss 0.6593 acc 78.48% | lr 0.05314 | 12.5s
+Epoch  26/50 | train loss 0.6190 acc 78.45% | val loss 0.7101 acc 77.08% | lr 0.05000 | 12.4s
+Epoch  27/50 | train loss 0.6097 acc 79.02% | val loss 0.7040 acc 77.20% | lr 0.04686 | 12.4s
+Epoch  28/50 | train loss 0.6012 acc 79.02% | val loss 0.5945 acc 80.78% | lr 0.04373 | 12.3s
+Epoch  29/50 | train loss 0.5904 acc 79.49% | val loss 0.7634 acc 76.58% | lr 0.04063 | 12.6s
+Epoch  30/50 | train loss 0.5841 acc 79.89% | val loss 0.6123 acc 79.72% | lr 0.03757 | 12.5s
+Epoch  31/50 | train loss 0.5672 acc 80.54% | val loss 0.7747 acc 77.32% | lr 0.03455 | 12.4s
+Epoch  32/50 | train loss 0.5548 acc 80.75% | val loss 0.6939 acc 77.84% | lr 0.03159 | 12.6s
+Epoch  33/50 | train loss 0.5501 acc 80.98% | val loss 0.5635 acc 81.28% | lr 0.02871 | 12.7s
+Epoch  34/50 | train loss 0.5458 acc 81.20% | val loss 0.5104 acc 83.02% | lr 0.02591 | 12.8s
+Epoch  35/50 | train loss 0.5278 acc 81.95% | val loss 0.5622 acc 81.98% | lr 0.02321 | 12.7s
+Epoch  36/50 | train loss 0.5221 acc 81.82% | val loss 0.5362 acc 82.50% | lr 0.02061 | 12.7s
+Epoch  37/50 | train loss 0.5080 acc 82.42% | val loss 0.5035 acc 83.82% | lr 0.01813 | 12.8s
+Epoch  38/50 | train loss 0.4981 acc 82.81% | val loss 0.5418 acc 82.86% | lr 0.01577 | 12.4s
+Epoch  39/50 | train loss 0.4873 acc 83.24% | val loss 0.4504 acc 85.24% | lr 0.01355 | 12.3s
+Epoch  40/50 | train loss 0.4741 acc 83.70% | val loss 0.4929 acc 84.04% | lr 0.01147 | 11.6s
+Epoch  41/50 | train loss 0.4643 acc 84.10% | val loss 0.4841 acc 84.66% | lr 0.00955 | 12.5s
+Epoch  42/50 | train loss 0.4574 acc 84.24% | val loss 0.4976 acc 83.18% | lr 0.00778 | 12.5s
+Epoch  43/50 | train loss 0.4502 acc 84.69% | val loss 0.4483 acc 85.18% | lr 0.00618 | 12.5s
+Epoch  44/50 | train loss 0.4398 acc 85.15% | val loss 0.4336 acc 85.64% | lr 0.00476 | 12.6s
+Epoch  45/50 | train loss 0.4321 acc 84.98% | val loss 0.4082 acc 86.50% | lr 0.00351 | 11.1s
+Epoch  46/50 | train loss 0.4242 acc 85.50% | val loss 0.4073 acc 86.20% | lr 0.00245 | 9.7s
+Epoch  47/50 | train loss 0.4172 acc 85.78% | val loss 0.3994 acc 86.74% | lr 0.00157 | 10.2s
+Epoch  48/50 | train loss 0.4170 acc 85.69% | val loss 0.3973 acc 86.62% | lr 0.00089 | 9.9s
+Epoch  49/50 | train loss 0.4113 acc 85.95% | val loss 0.3894 acc 86.80% | lr 0.00039 | 9.9s
+Epoch  50/50 | train loss 0.4095 acc 86.05% | val loss 0.3902 acc 87.00% | lr 0.00010 | 9.8s
+Best val acc 87.00% at epoch 50 | Test top-1 acc 86.10% | checkpoint checkpoints/runs/ynd9fg74.pth
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading history steps 48-49, summary, console lines 50-51
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▇▇▇▇▇▇███
+wandb: epoch_time_s █▆▆▆▆▆▆▆▆▆▆▆▆▆▆▁▂▁▂▆▅▅▆▆▆▆▆▆▆▆▅▄▆▆▆▄▂▂▂▂
+wandb:           lr ████████▇▇▇▇▇▇▆▆▆▆▅▅▅▄▄▄▄▃▃▃▂▂▂▂▂▂▁▁▁▁▁▁
+wandb:    train_acc ▁▃▄▄▅▅▆▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇██████████
+wandb:   train_loss █▆▅▅▄▄▄▃▃▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁
+wandb:      val_acc ▁▂▄▄▂▅▅▆▅▅▅▅▄▆▅▅▆▆▆▆▆▇▆▇▆▇▇▇▇▇███▇██████
+wandb:     val_loss ▅▄▄█▄▃▃▃▃▃▄▄▂▃▂▃▂▃▃▃▂▂▂▂▂▂▂▁▂▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   best_epoch 50
+wandb: best_val_acc 87
+wandb:   checkpoint checkpoints/runs/ynd...
+wandb:        epoch 50
+wandb: epoch_time_s 9.84694
+wandb:           lr 0.0001
+wandb:     test_acc 86.1
+wandb:    test_loss 0.42018
+wandb:    train_acc 86.04667
+wandb:   train_loss 0.4095
+wandb:           +2 ...
+wandb: 
+wandb: 🚀 View run act_relu_opt_nesterov_lr_0.1_bs_256_ep_50_wd_0.0005_bn_True at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/ynd9fg74
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261103_235356-ynd9fg74/logs
+2026-11-04 00:04:07,173 - wandb.wandb_agent - INFO - Cleaning up finished run: ynd9fg74
+2026-11-04 00:04:09,058 - wandb.wandb_agent - INFO - Agent received command: run
+2026-11-04 00:04:09,059 - wandb.wandb_agent - INFO - Agent starting run with config:
+	activation: relu
+	batch_norm: True
+	batch_size: 512
+	epochs: 50
+	lr: 0.05
+	optimizer: nesterov
+2026-11-04 00:04:09,060 - wandb.wandb_agent - INFO - About to run command: /usr/bin/env python -u -m src.train --config configs/baseline.yaml --activation=relu --batch_norm=True --batch_size=512 --epochs=50 --lr=0.05 --optimizer=nesterov
+2026-11-04 00:04:14,066 - wandb.wandb_agent - INFO - Running runs: ['ncxo5mtb']
+wandb: [wandb.login()] Loaded credentials for https://api.forge.coreweave.com from /home/anmol-t/.netrc.
+wandb: Currently logged in as: cs25m503 (cs25m503-iit-madras) to https://api.forge.coreweave.com. Use `wandb login --relogin` to force relogin
+wandb: WARNING Ignoring project 'vgg6-cifar10' when running a sweep.
+wandb: WARNING Ignoring entity 'cs25m503-iit-madras' when running a sweep.
+wandb: setting up run ncxo5mtb
+wandb: Tracking run with wandb version 0.31.0
+wandb: Run data is saved locally in /home/anmol-t/myspace/college/Sem3/system_design_for_deep_learning/Assignment1/wandb/run-20261104_000415-ncxo5mtb
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run earnest-sweep-18
+wandb: ⭐️ View project at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: 🧹 View sweep at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/sweeps/qtfqhv8y
+wandb: 🚀 View run at https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/ncxo5mtb
+Run act_relu_opt_nesterov_lr_0.05_bs_512_ep_50_wd_0.0005_bn_True on cuda
+Epoch   1/50 | train loss 1.7132 acc 37.81% | val loss 1.5094 acc 45.12% | lr 0.05000 | 11.6s
+Epoch   2/50 | train loss 1.3997 acc 49.99% | val loss 1.4521 acc 51.74% | lr 0.04995 | 9.8s
+Epoch   3/50 | train loss 1.2712 acc 54.79% | val loss 1.3002 acc 55.30% | lr 0.04980 | 10.2s
+Epoch   4/50 | train loss 1.1845 acc 58.04% | val loss 1.1773 acc 60.44% | lr 0.04956 | 10.3s
+Epoch   5/50 | train loss 1.1113 acc 60.79% | val loss 1.2299 acc 59.10% | lr 0.04921 | 10.2s
+Epoch   6/50 | train loss 1.0586 acc 62.74% | val loss 1.0311 acc 64.66% | lr 0.04878 | 10.5s
+Epoch   7/50 | train loss 1.0014 acc 64.62% | val loss 1.2148 acc 58.90% | lr 0.04824 | 10.3s
+Epoch   8/50 | train loss 0.9702 acc 65.90% | val loss 1.1552 acc 61.80% | lr 0.04762 | 10.5s
+Epoch   9/50 | train loss 0.9382 acc 67.13% | val loss 1.0089 acc 67.06% | lr 0.04691 | 10.3s
+Epoch  10/50 | train loss 0.9018 acc 68.22% | val loss 1.0517 acc 67.14% | lr 0.04611 | 10.2s
+Epoch  11/50 | train loss 0.8781 acc 69.24% | val loss 0.9750 acc 68.12% | lr 0.04523 | 10.2s
+Epoch  12/50 | train loss 0.8509 acc 70.32% | val loss 0.8648 acc 70.74% | lr 0.04426 | 10.4s
+Epoch  13/50 | train loss 0.8341 acc 70.86% | val loss 0.9226 acc 69.12% | lr 0.04322 | 9.9s
+Epoch  14/50 | train loss 0.8106 acc 71.68% | val loss 0.8364 acc 72.24% | lr 0.04211 | 10.3s
+Epoch  15/50 | train loss 0.7947 acc 72.12% | val loss 0.9902 acc 67.84% | lr 0.04094 | 10.2s
+Epoch  16/50 | train loss 0.7776 acc 73.01% | val loss 0.8830 acc 71.18% | lr 0.03969 | 8.0s
+Epoch  17/50 | train loss 0.7649 acc 73.36% | val loss 0.9468 acc 71.00% | lr 0.03840 | 6.8s
+Epoch  18/50 | train loss 0.7433 acc 74.07% | val loss 0.8150 acc 72.82% | lr 0.03704 | 6.7s
+Epoch  19/50 | train loss 0.7338 acc 74.51% | val loss 1.0393 acc 66.82% | lr 0.03564 | 7.1s
+Epoch  20/50 | train loss 0.7221 acc 74.92% | val loss 0.8954 acc 71.72% | lr 0.03420 | 10.1s
+Epoch  21/50 | train loss 0.7081 acc 75.38% | val loss 0.9243 acc 70.04% | lr 0.03273 | 10.7s
+Epoch  22/50 | train loss 0.6978 acc 75.90% | val loss 0.8440 acc 73.34% | lr 0.03122 | 8.4s
+Epoch  23/50 | train loss 0.6830 acc 76.26% | val loss 0.8137 acc 73.60% | lr 0.02968 | 8.9s
+Epoch  24/50 | train loss 0.6712 acc 76.69% | val loss 0.6960 acc 76.92% | lr 0.02813 | 6.8s
+Epoch  25/50 | train loss 0.6663 acc 76.87% | val loss 0.6950 acc 77.24% | lr 0.02657 | 7.0s
+Epoch  26/50 | train loss 0.6564 acc 77.02% | val loss 0.7056 acc 76.76% | lr 0.02500 | 10.3s
+Epoch  27/50 | train loss 0.6374 acc 78.07% | val loss 0.7815 acc 75.26% | lr 0.02343 | 10.4s
+Epoch  28/50 | train loss 0.6322 acc 78.02% | val loss 0.6425 acc 78.40% | lr 0.02187 | 10.4s
+Epoch  29/50 | train loss 0.6265 acc 78.37% | val loss 0.6681 acc 78.36% | lr 0.02032 | 10.6s
+Epoch  30/50 | train loss 0.6195 acc 78.60% | val loss 0.5773 acc 80.44% | lr 0.01878 | 10.7s
+Epoch  31/50 | train loss 0.6068 acc 79.06% | val loss 0.6241 acc 78.64% | lr 0.01727 | 10.6s
+Epoch  32/50 | train loss 0.5945 acc 79.46% | val loss 0.5439 acc 82.08% | lr 0.01580 | 12.3s
+Epoch  33/50 | train loss 0.5942 acc 79.47% | val loss 0.6159 acc 79.62% | lr 0.01436 | 10.3s
+Epoch  34/50 | train loss 0.5828 acc 79.78% | val loss 0.5787 acc 80.88% | lr 0.01296 | 10.3s
+Epoch  35/50 | train loss 0.5773 acc 80.11% | val loss 0.5829 acc 80.54% | lr 0.01160 | 10.4s
+Epoch  36/50 | train loss 0.5674 acc 80.58% | val loss 0.6016 acc 79.92% | lr 0.01031 | 10.5s
+Epoch  37/50 | train loss 0.5627 acc 80.53% | val loss 0.5562 acc 81.80% | lr 0.00906 | 10.4s
+Epoch  38/50 | train loss 0.5605 acc 80.77% | val loss 0.5901 acc 80.98% | lr 0.00789 | 10.4s
+Epoch  39/50 | train loss 0.5460 acc 81.13% | val loss 0.5359 acc 82.54% | lr 0.00678 | 10.3s
+Epoch  40/50 | train loss 0.5410 acc 81.36% | val loss 0.4923 acc 83.58% | lr 0.00574 | 12.0s
+Epoch  41/50 | train loss 0.5365 acc 81.63% | val loss 0.5139 acc 82.66% | lr 0.00477 | 10.4s
+Epoch  42/50 | train loss 0.5284 acc 81.78% | val loss 0.4757 acc 84.34% | lr 0.00389 | 10.1s
+Epoch  43/50 | train loss 0.5263 acc 81.84% | val loss 0.4908 acc 83.70% | lr 0.00309 | 10.3s
+Epoch  44/50 | train loss 0.5244 acc 82.12% | val loss 0.4921 acc 83.64% | lr 0.00238 | 10.2s
+Epoch  45/50 | train loss 0.5166 acc 82.09% | val loss 0.4796 acc 84.14% | lr 0.00176 | 10.3s
+Epoch  46/50 | train loss 0.5101 acc 82.51% | val loss 0.4662 acc 84.50% | lr 0.00122 | 10.3s
+Epoch  47/50 | train loss 0.5125 acc 82.29% | val loss 0.4644 acc 84.62% | lr 0.00079 | 10.2s
+Epoch  48/50 | train loss 0.5082 acc 82.61% | val loss 0.4620 acc 84.60% | lr 0.00044 | 11.8s
+Epoch  49/50 | train loss 0.5073 acc 82.71% | val loss 0.4617 acc 84.56% | lr 0.00020 | 10.3s
+Epoch  50/50 | train loss 0.5059 acc 82.60% | val loss 0.4607 acc 84.68% | lr 0.00005 | 10.3s
+Best val acc 84.68% at epoch 50 | Test top-1 acc 83.46% | checkpoint checkpoints/runs/ncxo5mtb.pth
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 48-49, summary, console lines 50-51
+wandb: 
+wandb: Run history:
+wandb:        epoch ▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
+wandb: epoch_time_s ▇▅▆▆▆▆▆▆▆▆▅▆▆▃▁▁▅▃▄▁▆▆▆▆▆▆▆▆▆▆▆█▆▅▆▆▆▆█▆
+wandb:           lr ███████▇▇▇▇▇▇▆▆▆▆▅▅▅▄▄▄▄▄▃▃▃▃▂▂▂▂▂▁▁▁▁▁▁
+wandb:    train_acc ▁▃▄▄▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇██████████████
+wandb:   train_loss █▆▅▅▅▄▄▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:      val_acc ▁▂▄▃▄▄▅▅▆▅▅▆▆▆▅▅▆▆▇▇▆▇▇▇▇▇▇▇▇▇██████████
+wandb:     val_loss ██▇▆▆▆▆▅▅▄▄▄▅▄▃▄▄▄▃▃▃▃▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:   best_epoch 50
+wandb: best_val_acc 84.68
+wandb:   checkpoint checkpoints/runs/ncx...
+wandb:        epoch 50
+wandb: epoch_time_s 10.30758
+wandb:           lr 5e-05
+wandb:     test_acc 83.46
+wandb:    test_loss 0.49742
+wandb:    train_acc 82.60444
+wandb:   train_loss 0.50585
+wandb:           +2 ...
+wandb: 
+wandb: 🚀 View run act_relu_opt_nesterov_lr_0.05_bs_512_ep_50_wd_0.0005_bn_True at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10/runs/ncxo5mtb
+wandb: ⭐️ View project at: https://forge.coreweave.com/wandb/cs25m503-iit-madras/vgg6-cifar10
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20261104_000415-ncxo5mtb/logs
+2026-11-04 00:12:50,235 - wandb.wandb_agent - INFO - Cleaning up finished run: ncxo5mtb
+2026-11-04 00:12:52,842 - wandb.wandb_agent - INFO - Agent received command: exit
+2026-11-04 00:12:52,843 - wandb.wandb_agent - INFO - Received exit command. Killing runs and quitting.

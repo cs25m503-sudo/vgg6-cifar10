@@ -1,0 +1,31 @@
+# Q2(c) part 2: training length. Batch size / LR fixed to the Q2(b) winner (Nesterov, lr 0.1, bs 128).
+name: q2c_epochs
+entity: cs25m503-iit-madras
+project: vgg6-cifar10
+program: src/train.py
+method: grid
+metric:
+  name: val_acc
+  goal: maximize
+parameters:
+  epochs:
+    values: [10, 20, 50, 100, 150]
+  batch_size:
+    value: 128
+  lr:
+    value: 0.1
+  optimizer:
+    value: nesterov
+  activation:
+    value: relu
+  batch_norm:
+    value: true
+command:
+  - ${env}
+  - python
+  - -u
+  - -m
+  - src.train
+  - --config
+  - configs/baseline.yaml
+  - ${args}

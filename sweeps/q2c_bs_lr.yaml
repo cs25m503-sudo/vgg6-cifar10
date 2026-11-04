@@ -1,0 +1,31 @@
+# Q2(c) part 1: batch size x learning rate. Activation/optimizer fixed to the Q2(a)/Q2(b) winners.
+name: q2c_bs_lr
+entity: cs25m503-iit-madras
+project: vgg6-cifar10
+program: src/train.py
+method: grid
+metric:
+  name: val_acc
+  goal: maximize
+parameters:
+  batch_size:
+    values: [32, 64, 128, 256, 512]
+  lr:
+    values: [0.01, 0.05, 0.1, 0.2]
+  optimizer:
+    value: nesterov
+  activation:
+    value: relu
+  batch_norm:
+    value: true
+  epochs:
+    value: 50
+command:
+  - ${env}
+  - python
+  - -u
+  - -m
+  - src.train
+  - --config
+  - configs/baseline.yaml
+  - ${args}

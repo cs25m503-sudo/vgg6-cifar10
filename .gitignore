@@ -6,3 +6,4 @@ __pycache__/
 A1.pdf
 template_reference.ipynb
 checkpoints/runs/
+checkpoints/repro/
